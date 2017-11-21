@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <div class="nav-container">
+                <div class="nav responsive" id="nav">
+                    <h1 class="logo">Whitehill Motors</h1>
+                    <ul class="nav-links">
+
+                        <li>
+                            <a class="active" href="#">
+                                <i class="fa fa-home" aria-hidden="true"></i><br />
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i><br />
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-car" aria-hidden="true"></i><br />
+                                Cars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-wrench" aria-hidden="true"></i><br />
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-address-book" aria-hidden="true"></i><br />
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script>
+            function responsiveNav() {
+                var x = document.getElementById("nav");
+                if (x.className === "nav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "nav";
+                }
+            }
+        </script>
+    </body>
+</html>
