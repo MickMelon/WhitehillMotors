@@ -95,11 +95,60 @@ a:hover {
     color: #fff;
 }
 
+.header-container {
+    background-image: url('../img/showroom.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 5em;
+
+    border-bottom: 0.5em solid #0070c0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text {
+    width: 100%;
+    padding: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.header-text h1, h2 {
+    padding: 0.25em;
+    margin: 0.25em;
+}
+
+.header-text h1 {
+    color: #fff;
+    background-color: rgba(0, 112, 192, 0.75); /* RGBA version of #0070c0 with opacity */
+    font-size: 3em;
+}
+
+.header-text h2 {
+    color: #0070c0;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
 /*
 ========================================
                 Main
 ========================================
 */
+
+.page-container {
+    /* For debug purposes */
+    background-color: #aaa;
+    padding: 0.1em;
+}
+
+.page-container section {
+    background-color: #777;
+    padding: 0.5em;
+
+    margin: 0.5em; /* debug purposes */
+}
 
 /*
 ========================================
@@ -111,15 +160,11 @@ a:hover {
     color: #fff;
     background-color: #222;
     border-top: 0.5em solid #0070c0;
-
-    /* Keep the footer at the bottom of the page */
-    position: absolute;
     width: 100%;
-    bottom: 0;
+
 
     display: flex;
     flex-direction: column;
-
 }
 
 .footer-container h3 {
@@ -216,6 +261,15 @@ a:hover {
         display: none;
     }
 
+    .header-container {
+        padding: 0;
+        border-bottom: 0.25em solid #0070c0;
+    }
+
+    .header-text h1 {
+        font-size: 2.5em;
+    }
+
     .footer-container {
         border-top: 0.25em solid #0070c0;
     }
@@ -271,7 +325,17 @@ a:hover {
         margin-right: 0.25em;
     }
 
+    .header-text h1 {
+        font-size: 1.5em;
+    }
+
+    .header-text h2 {
+        font-size: 1.15em;
+    }
+
     .footer-container {
+        font-size: 0.9em;
+
         flex-direction: row;
         flex-wrap: wrap;
     }
