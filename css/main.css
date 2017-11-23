@@ -17,6 +17,10 @@ html, body {
     overflow-x: hidden;
 }
 
+ul {
+    list-style-type: none;
+}
+
 /*
 ========================================
                 Header
@@ -47,12 +51,15 @@ html, body {
     text-align: center;
 }
 
+.nav .logo h1:hover {
+    color: #0070c0;
+}
+
 .nav .nav-icon {
     display: none;
 }
 
 .nav ul {
-    list-style-type: none;
     overflow: hidden;
     font-size: 1.25em;
 
@@ -90,6 +97,24 @@ html, body {
 ========================================
 */
 
+.footer-container {
+    color: #fff;
+    background-color: #333;
+    border-top: 0.5em solid #0070c0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer-container h3 {
+    text-transform: uppercase;
+}
+
+.footer-left, .footer-right {
+    padding: 1em;
+}
+
 /*
 ========================================
             Media Queries
@@ -125,8 +150,16 @@ html, body {
         padding: 0.25em;
     }
 
+    .nav ul li a i {
+        margin-right: 0.25em;
+    }
+
     .nav ul br {
         display: none;
+    }
+
+    .footer-container {
+        border-top: 0.25em solid #0070c0;
     }
 }
 
@@ -176,4 +209,11 @@ html, body {
         text-align: left;
     }
 
+    .nav.responsive ul li a i {
+        margin-right: 0.25em;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
 }
