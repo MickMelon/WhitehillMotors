@@ -36,39 +36,33 @@ a:hover {
 ========================================
 */
 
-.nav-container {
+nav {
+    width: 100%;
     color: #fff;
     background-color: #222;
     border-bottom: 0.5em solid #0070c0;
-
-    display: flex;
-    justify-content: center;
-}
-
-.nav {
-    width: 100%;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav .logo h1 {
+nav .logo h1 {
     margin-left: 1em;
     font-weight: bold;
     font-size: 2.5em;
     text-align: center;
 }
 
-.nav .logo h1:hover {
+nav .logo h1:hover {
     color: #0070c0;
 }
 
-.nav .nav-icon {
+nav .nav-icon {
     display: none;
 }
 
-.nav ul {
+nav ul {
     overflow: hidden;
     font-size: 1.25em;
 
@@ -78,24 +72,24 @@ a:hover {
     flex-wrap: wrap;
 }
 
-.nav ul li a {
+nav ul li a {
     display: inline-block;
     color: #fff;
     text-align: center;
     padding: 32px;
 }
 
-.nav ul li a:hover {
+nav ul li a:hover {
     background-color: #0070c0;
     text-decoration: none;
 }
 
-.nav ul li a.active {
+nav ul li a.active {
     background-color: #0070c0;
     color: #fff;
 }
 
-.header-container {
+.banner {
     background-image: url('../img/showroom.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -106,25 +100,25 @@ a:hover {
     flex-direction: column;
 }
 
-.header-text {
+.banner-text {
     width: 100%;
     padding: 1em;
     text-transform: uppercase;
     text-align: center;
 }
 
-.header-text h1, h2 {
+.banner-text h1, h2 {
     padding: 0.25em;
     margin: 0.25em;
 }
 
-.header-text h1 {
+.banner-text h1 {
     color: #fff;
     background-color: rgba(0, 112, 192, 0.75); /* RGBA version of #0070c0 with opacity */
     font-size: 3em;
 }
 
-.header-text h2 {
+.banner-text h2 {
     color: #0070c0;
     background-color: rgba(255, 255, 255, 0.75);
 }
@@ -147,13 +141,13 @@ a:hover {
 ========================================
 */
 
-.page-container {
+main {
     /* For debug purposes */
     background-color: #aaa;
     padding: 0.1em;
 }
 
-.page-container section {
+main section {
     background-color: #777;
     padding: 0.5em;
 
@@ -166,7 +160,7 @@ a:hover {
 ========================================
 */
 
-.footer-container {
+footer {
     color: #fff;
     background-color: #222;
     border-top: 0.5em solid #0070c0;
@@ -177,12 +171,12 @@ a:hover {
     flex-direction: column;
 }
 
-.footer-container h3 {
+footer h3 {
     text-transform: uppercase;
     padding: 0.5em;
 }
 
-.footer-container p {
+footer p {
     padding: 0.5em;
 }
 
@@ -238,111 +232,111 @@ a:hover {
     /* For screens smaller than normal desktop size.
        ie: iPads and other tablets. Includes phone screens when used horizontally.
      */
-    .nav-container {
+    nav-container {
         border-bottom: 0.25em solid #0070c0;
     }
 
-    .nav {
+    nav {
         display: flex;
         flex-direction: column;
     }
 
-    .nav .logo h1 {
+    nav .logo h1 {
         font-size: 2em;
         margin-left: 0;
         display: inline;
     }
 
-    .nav ul {
+    nav ul {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
     }
 
-    .nav ul li a {
+    nav ul li a {
         padding: 0.25em;
     }
 
-    .nav ul li a i {
+    nav ul li a i {
         margin-right: 0.25em;
     }
 
-    .nav ul br {
+    nav ul br {
         display: none;
     }
 
-    .header-container {
+    .banner {
         padding: 0;
     }
 
-    .header-text h1 {
+    .banner-text h1 {
         font-size: 2.5em;
     }
 
-    .footer-container {
+    footer {
         border-top: 0.25em solid #0070c0;
     }
 }
 
 @media screen and (max-width: 512px) {
     /* For mobile phones when viewing vertically. */
-    .nav {
+    nav {
         flex-direction: row;
     }
 
-    .nav .logo h1 {
+    nav .logo h1 {
         font-size: 1.75em;
         margin-left: 0.25em;
     }
 
-    .nav .nav-icon {
+    nav .nav-icon {
         display: inline;
         font-size: 1.75em;
         margin-right: 0.25em;
     }
 
-    .nav .nav-icon a {
+    nav .nav-icon a {
         color: #fff;
     }
 
-    .nav .nav-icon a:hover {
+    nav .nav-icon a:hover {
         color: #0070c0;
     }
 
-    .nav ul {
+    nav ul {
         display: none;
     }
 
     /* Responsive drop-down navigation */
 
-    .nav.responsive {
+    nav.responsive {
         flex-wrap: wrap;
     }
 
-    .nav.responsive ul {
+    nav.responsive ul {
         flex: 0 100%;
         display: block;
         background-color: #333;
     }
 
-    .nav.responsive ul li a {
+    nav.responsive ul li a {
         width: 100%;
         text-align: left;
     }
 
-    .nav.responsive ul li a i {
+    nav.responsive ul li a i {
         margin-right: 0.25em;
     }
 
-    .header-text h1 {
+    .banner-text h1 {
         font-size: 1.5em;
     }
 
-    .header-text h2 {
+    .banner-text h2 {
         font-size: 1.15em;
     }
 
-    .footer-container {
+    footer {
         font-size: 0.9em;
 
         flex-direction: row;

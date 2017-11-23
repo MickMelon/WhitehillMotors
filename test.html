@@ -1,0 +1,50 @@
+<style>
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #666;
+}
+
+.column {
+    flex-basis: 100%;
+    background-color: #aaa;
+}
+
+@media screen and (min-witdh: 800px) {
+    .column {
+        flex: 1;
+    }
+
+    ._25 {
+        flex: 2.5;
+    }
+
+    ._55 {
+        flex: 5.5;
+    }
+
+    ._20 {
+        flex: 2;
+    }
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="column _25">
+            <p>Test</p>
+        </div>
+        <div class="column _55">
+            <p>Test</p>
+        </div>
+        <div class="column">
+            <p>Test</p>
+        </div>
+    </div>
+</div>
