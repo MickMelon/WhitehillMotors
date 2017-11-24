@@ -142,16 +142,58 @@ nav ul li a.active {
 */
 
 main {
-    /* For debug purposes */
-    background-color: #aaa;
-    padding: 0.1em;
+
 }
 
-main section {
-    background-color: #777;
+section {
+    background-color: #ddd;
     padding: 0.5em;
+    margin-bottom: 1em;
 
-    margin: 0.5em; /* debug purposes */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+section .text, .image {
+    margin: 1em;
+}
+
+section .text {
+    text-align: justify;
+}
+
+section .text h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+section .text p {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+section .image img {
+    width: 100%;
+}
+
+.button {
+    background-color: #0070c0;
+    border: none;
+    color: #fff;
+    padding: 1em;
+
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button:hover {
+    text-decoration: none;
+    background-color: DarkBlue;
 }
 
 /*
@@ -316,7 +358,7 @@ footer p {
     nav.responsive ul {
         flex: 0 100%;
         display: block;
-        background-color: #333;
+        background-color: #222;
     }
 
     nav.responsive ul li a {
@@ -334,6 +376,10 @@ footer p {
 
     .banner-text h2 {
         font-size: 1.15em;
+    }
+
+    section {
+        flex-wrap: wrap-reverse;
     }
 
     footer {
