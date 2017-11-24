@@ -183,7 +183,7 @@ section .image img {
     border: none;
     color: #fff;
     padding: 1em;
-
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
