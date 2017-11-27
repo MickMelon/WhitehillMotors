@@ -39,7 +39,7 @@ a:hover {
 nav {
     width: 100%;
     color: #fff;
-    background-color: #222;
+    background-color: #23282d;
     border-bottom: 0.5em solid #0070c0;
 
     display: flex;
@@ -142,26 +142,48 @@ nav ul li a.active {
 */
 
 main {
-
+    background-color: green;
 }
 
 section {
-    background-color: #ddd;
-    padding: 0.5em;
-    margin-bottom: 1em;
+    background-color: #F8F8F8;
+
+    width: 100%;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+}
 
+section.dark {
+    background-color: #181818;
+}
+
+section.parallax {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/workshop.jpg');
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section.dark .text {
+    color: #BEBEBE;
+}
+
+section.parallax .text {
+    color: #fff;
 }
 
 section .text, .image {
-    margin: 1em;
+    margin: 1em 2.5em 1em 2.5em;
 }
 
 section .text {
     text-align: justify;
+    color: #282828;
 }
 
 section .text h1 {
@@ -174,8 +196,20 @@ section .text p {
     padding-bottom: 1em;
 }
 
+section .image {
+    width: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 section .image img {
     width: 100%;
+}
+
+section.parallax .image i {
+    color: #fff; font-size: 20em;
 }
 
 .button {
@@ -203,11 +237,10 @@ section .image img {
 */
 
 footer {
-    color: #fff;
-    background-color: #222;
+    color: #F8F8F8;
+    background-color: #23282d;
     border-top: 0.5em solid #0070c0;
     width: 100%;
-
 
     display: flex;
     flex-direction: column;
@@ -270,15 +303,19 @@ footer p {
 ========================================
 */
 
+@media screen and (min-width: 1300px) {
+    /* For large desktop monitors */
+    section {
+        padding: 0.5em 15% 0.5em 15%;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     /* For screens smaller than normal desktop size.
        ie: iPads and other tablets. Includes phone screens when used horizontally.
      */
-    nav-container {
-        border-bottom: 0.25em solid #0070c0;
-    }
-
     nav {
+        border-bottom: 0.25em solid #0070c0;
         display: flex;
         flex-direction: column;
     }
@@ -313,6 +350,26 @@ footer p {
 
     .banner-text h1 {
         font-size: 2.5em;
+    }
+
+    section {
+        flex-wrap: wrap-reverse;
+    }
+
+    section .text h1 {
+        text-align: center;
+    }
+
+    section.parallax {
+        flex-wrap: wrap;
+    }
+
+    section.parallax .image i {
+        font-size: 5em;
+    }
+
+    section .button {
+        width: 100%;
     }
 
     footer {
@@ -378,9 +435,7 @@ footer p {
         font-size: 1.15em;
     }
 
-    section {
-        flex-wrap: wrap-reverse;
-    }
+
 
     footer {
         font-size: 0.9em;
