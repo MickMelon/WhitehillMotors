@@ -157,10 +157,6 @@ section {
     justify-content: space-around;
 }
 
-section.dark {
-    background-color: #181818;
-}
-
 section.parallax {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/workshop.jpg');
 
@@ -168,10 +164,6 @@ section.parallax {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-section.dark .text {
-    color: #BEBEBE;
 }
 
 section.parallax .text {
@@ -205,10 +197,6 @@ section .image {
     justify-content: center;
 }
 
-section .image img {
-    width: 100%;
-}
-
 section.parallax .image i {
     color: #fff; font-size: 20em;
 }
@@ -229,6 +217,53 @@ section.parallax .image i {
 .button:hover {
     text-decoration: none;
     background-color: #1f618d;
+}
+
+.card-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-section h1 {
+    text-transform: uppercase;
+    padding-bottom: 2em;
+    font-size: 2em;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    flex: 1;
+    margin: 1em;
+}
+
+.card h1, .card p {
+    text-align: center;
+    margin: 0.75em;
+}
+
+.card h1 {
+    text-transform: uppercase;
+    font-size: 1.25em;
+}
+
+.card p {
+    font-size: 0.9em;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card .button {
+    margin: 1em;
 }
 
 /*
@@ -368,12 +403,8 @@ footer p {
         font-size: 5em;
     }
 
-    section .button {
+    section .button-stretch {
         width: 100%;
-    }
-
-    footer {
-        border-top: 0.25em solid #2874a6;
     }
 }
 
@@ -445,6 +476,10 @@ footer p {
 
     section .text p {
         font-size: 0.9em;
+    }
+
+    section .image img {
+        width: 150%;
     }
 
     footer {
