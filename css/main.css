@@ -123,19 +123,6 @@ nav ul li a.active {
     background-color: rgba(255, 255, 255, 0.75);
 }
 
-.section-small {
-    color: #fff;
-    background-color: #2874a6;
-    text-align: center;
-    padding: 1em;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.section-small .fa {
-    margin-right: 0.25em;
-}
-
 /*
 ========================================
                 Main
@@ -155,19 +142,6 @@ section {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-}
-
-section.parallax {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/workshop.jpg');
-
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-section.parallax .text {
-    color: #fff;
 }
 
 section .text, .image {
@@ -201,6 +175,32 @@ section.parallax .image i {
     color: #fff; font-size: 20em;
 }
 
+.section-small {
+    color: #fff;
+    background-color: #2874a6;
+    text-align: center;
+    padding: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.section-small .fa {
+    margin-right: 0.25em;
+}
+
+section.parallax {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/workshop.jpg');
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section.parallax .text {
+    color: #fff;
+}
+
 .button {
     background-color: #2874a6;
     border: none;
@@ -226,35 +226,39 @@ section.parallax .image i {
 
 .card-section h1 {
     text-transform: uppercase;
-    padding-bottom: 2em;
     font-size: 2em;
 }
 
 .cards {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .card {
+    border: 1px solid #aaa;
+    margin: 1em;
+
     display: flex;
     flex-direction: column;
-    border: 1px solid #aaa;
+    justify-content: space-between;
     flex: 1;
-    margin: 1em;
 }
 
-.card h1, .card p {
+.card-text {
+    padding: 1em;
+}
+
+.card-text h1, .card p {
     text-align: center;
-    margin: 0.75em;
+    padding: 0.5em;
 }
 
-.card h1 {
+.card-text h1 {
     text-transform: uppercase;
     font-size: 1.25em;
 }
 
-.card p {
+.card-text p {
     font-size: 0.9em;
 }
 
@@ -406,6 +410,17 @@ footer p {
     section .button-stretch {
         width: 100%;
     }
+
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        flex: none;
+        width: 40%;
+    }
+
 }
 
 @media screen and (max-width: 512px) {
@@ -480,6 +495,16 @@ footer p {
 
     section .image img {
         width: 150%;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-content: space-around;
+    }
+
+    .card {
+        width: 80%;
+        flex: 1;
     }
 
     footer {
