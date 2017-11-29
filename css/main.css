@@ -362,7 +362,7 @@ section.cars {
     margin-bottom: 1em;
 }
 
-.car .image, .car .details, .car .buttons {
+.car .image, .car .details, .car .buttons, .car .more-details {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -370,6 +370,10 @@ section.cars {
 
 .car .buttons, .car .details {
     justify-content: space-around;
+}
+
+.car .more-details {
+    page-break-before: always;
 }
 
 .car .buttons a {
@@ -384,11 +388,50 @@ section.cars {
     width: 100%;
 }
 
-.car .details, .car .buttons {
-}
-
 .cars-navigation {
     text-align: center;
+}
+
+.single-car {
+    border: 1px solid #a1a1a1;
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-car-top-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.single-car-top-row .details {
+    padding: 1em;
+    width: 100%;
+    flex: 1;
+}
+
+.single-car-top-row .details h3 {
+    font-size: 2em;
+}
+
+.single-car-top-row .gallery img {
+    width: 100%;
+    flex: 2;
+}
+
+.single-car-bottom-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-car-bottom-row .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.single-car-bottom-row a {
+    margin: 1em;
 }
 
 /*
@@ -540,6 +583,14 @@ footer p {
     .card {
         flex: none;
         width: 40%;
+    }
+
+    .single-car {
+
+    }
+
+    .single-car-top-row {
+        flex-direction: column;
     }
 
 }
