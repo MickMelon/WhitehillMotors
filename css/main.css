@@ -30,6 +30,54 @@ a:hover {
     text-decoration: underline;
 }
 
+input {
+    width: 100%;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+
+    font-family: 'Roboto';
+}
+
+table {
+    width: 100%;
+}
+
+section.services td, section.services th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+section.services tr:nth-child(even){background-color: #f2f2f2;}
+
+section.services tr:hover {background-color: #ddd;}
+
+section.services th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #2874a6;
+    color: white;
+}
+
 /*
 ========================================
                 Header
@@ -203,6 +251,47 @@ section.parallax {
 
 section.parallax .text {
     color: #fff;
+}
+
+section.cars {
+    display: flex;
+    flex-direction: column;
+}
+
+.car {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+    border: 1px solid #000;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.car .image, .car .details, .car .buttons {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.car .buttons, .car .details {
+    justify-content: space-around;
+}
+
+.car .buttons a {
+
+}
+
+.car .image {
+    margin-left: 0;
+}
+
+.car .image img {
+    width: 100%;
+}
+
+.car .details, .car .buttons {
 }
 
 .button {
@@ -427,6 +516,34 @@ footer p {
 
 }
 
+@media screen and (max-width: 750px) {
+    .cars {
+
+    }
+
+    .car {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car .buttons {
+        flex-direction: row;
+    }
+
+    .car .image {
+        flex: 1;
+    }
+
+    .car .image img {
+        width: 100%;
+    }
+
+    .car .details, .car .buttons {
+        flex: 2;
+        text-align: center;
+    }
+}
+
 @media screen and (max-width: 512px) {
     /* For mobile phones when viewing vertically. */
     nav {
@@ -533,52 +650,4 @@ footer p {
     #socialmedia {
         text-align: left;
     }
-}
-
-input {
-    width: 100%;
-}
-
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-}
-
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    resize: none;
-
-    font-family: 'Roboto';
-}
-
-table {
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2;}
-
-tr:hover {background-color: #ddd;}
-
-th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #2874a6;
-    color: white;
 }
