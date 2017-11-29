@@ -56,7 +56,8 @@
 
             <section class="cars">
                 <div class="filter-results">
-                    <div id="price">
+                    <p>Filter Results</p>
+                    <div class="filter-results-group">
                         Min Price:
                         <select>
                             <option value="volvo">£100</option>
@@ -73,30 +74,16 @@
                             <option value="audi">£400</option>
                         </select>
                     </div>
+                    <div class="filter-results-group">
+                        Min Mileage:
+                        <select>
+                            <option value="volvo">£100</option>
+                            <option value="saab">£200</option>
+                            <option value="opel">£300</option>
+                            <option value="audi">£400</option>
+                        </select>
 
-                    <div id="conditions">
-                        Max Price:
-                        <select>
-                            <option value="volvo">£100</option>
-                            <option value="saab">£200</option>
-                            <option value="opel">£300</option>
-                            <option value="audi">£400</option>
-                        </select>
-                        Max Price:
-                        <select>
-                            <option value="volvo">£100</option>
-                            <option value="saab">£200</option>
-                            <option value="opel">£300</option>
-                            <option value="audi">£400</option>
-                        </select>
-                        Max Price:
-                        <select>
-                            <option value="volvo">£100</option>
-                            <option value="saab">£200</option>
-                            <option value="opel">£300</option>
-                            <option value="audi">£400</option>
-                        </select>
-                        Max Price:
+                        Max Mileage:
                         <select>
                             <option value="volvo">£100</option>
                             <option value="saab">£200</option>
@@ -104,8 +91,39 @@
                             <option value="audi">£400</option>
                         </select>
                     </div>
-
-                    <div id="sort-by">
+                    <div class="filter-results-group">
+                        Manufacturer:
+                        <select>
+                            <option value="volvo">£100</option>
+                            <option value="saab">£200</option>
+                            <option value="opel">£300</option>
+                            <option value="audi">£400</option>
+                        </select>
+                        Model:
+                        <select>
+                            <option value="volvo">£100</option>
+                            <option value="saab">£200</option>
+                            <option value="opel">£300</option>
+                            <option value="audi">£400</option>
+                        </select>
+                    </div>
+                    <div class="filter-results-group">
+                        Fuel Type:
+                        <select>
+                            <option value="volvo">£100</option>
+                            <option value="saab">£200</option>
+                            <option value="opel">£300</option>
+                            <option value="audi">£400</option>
+                        </select>
+                        Transmission:
+                        <select>
+                            <option value="volvo">£100</option>
+                            <option value="saab">£200</option>
+                            <option value="opel">£300</option>
+                            <option value="audi">£400</option>
+                        </select>
+                    </div>
+                    <div class="filter-results-group">
                         Sort by:
                         <select>
                             <option value="volvo">£100</option>
@@ -113,6 +131,8 @@
                             <option value="opel">£300</option>
                             <option value="audi">£400</option>
                         </select>
+                        <br />
+                        <input type="submit" value="Go" />
                     </div>
                 </div>
 
@@ -121,6 +141,8 @@
                         <img src="img/vw_golf_r.jpg" />
                     </div>
                     <div class="details">
+                        <div class="price">
+                        </div>
                         <h3 style="text-transform: uppercase;">Volkswagen Golf</h3>
                         <table>
                             <tr><td><b>Condition:</b></td><td>Used</td></tr>
@@ -129,16 +151,20 @@
                             <tr><td><b>Engine:</b></td><td>2.0L GTi</td></tr>
                             <tr><td><b>Fuel Type:</b></td><td>Petrol</td></tr>
                             <tr><td><b>Transmission:</b></td><td>Manual</td></tr>
-
+                            <tr><td><b>Price:</b></td><td><b>£29,999</b></td></tr>
                         </table>
-                        <h3>£30,699</h3>
                     </div>
+
                     <div class="buttons">
                         <a href="#" class="button">Call Us</a>
                         <a href="#" class="button">Enquire</a>
                         <a href="#" class="button">More Details</a>
                     </div>
                 </div>
+
+
+
+
                 <div class="car">
                     <div class="image">
                         <img src="img/vw_golf_r.jpg" />
@@ -187,6 +213,7 @@
                 </div>
 
                 <div class="cars-navigation">
+                    <p>Page 1 of 1</p>
                     <p><a href="#"><< Previous</a> - <a href="#">Next >></a></p>
                 </div>
             </section>

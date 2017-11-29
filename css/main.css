@@ -253,47 +253,6 @@ section.parallax .text {
     color: #fff;
 }
 
-section.cars {
-    display: flex;
-    flex-direction: column;
-}
-
-.car {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-
-    border: 1px solid #000;
-    padding: 1em;
-    margin-bottom: 1em;
-}
-
-.car .image, .car .details, .car .buttons {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.car .buttons, .car .details {
-    justify-content: space-around;
-}
-
-.car .buttons a {
-
-}
-
-.car .image {
-    margin-left: 0;
-}
-
-.car .image img {
-    width: 100%;
-}
-
-.car .details, .car .buttons {
-}
-
 .button {
     background-color: #2874a6;
     border: none;
@@ -361,6 +320,75 @@ section.cars {
 
 .card .button {
     margin: 1em;
+}
+
+section.cars {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    border: 1px solid #a1a1a1;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 1em;
+
+    font-size: 0.9em;
+}
+
+.filter-results p {
+    display: none;
+}
+
+.filter-results-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.car {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+    border: 1px solid #a1a1a1;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.car .image, .car .details, .car .buttons {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.car .buttons, .car .details {
+    justify-content: space-around;
+}
+
+.car .buttons a {
+
+}
+
+.car .image {
+    margin-left: 0;
+}
+
+.car .image img {
+    width: 100%;
+}
+
+.car .details, .car .buttons {
+}
+
+.cars-navigation {
+    text-align: center;
 }
 
 /*
@@ -517,34 +545,54 @@ footer p {
 }
 
 @media screen and (max-width: 750px) {
-    .cars {
-
-    }
-
-    .car {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .car .buttons {
-        flex-direction: row;
+        page-break-before: always;
     }
 
-    .car .image {
-        flex: 1;
-    }
-
-    .car .image img {
-        width: 100%;
-    }
-
-    .car .details, .car .buttons {
-        flex: 2;
-        text-align: center;
+    .car .buttons a {
+        margin: 0.5em 0 0.5em 0;
     }
 }
 
 @media screen and (max-width: 512px) {
+    .car {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .car .details {
+        width: 100%;
+    }
+
+    .car .details h3 {
+        text-align: center;
+    }
+
+    .car .details td {
+        width: 100%;
+    }
+
+    .car .buttons {
+        page-break-before: avoid;
+        width: 100%;
+    }
+
+    .car .image {
+        padding: 0; margin: 0;
+        width: 100%;
+    }
+
+    .filter-results {
+        flex-direction: column;
+    }
+
+    .filter-results p {
+        display: inline;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
     /* For mobile phones when viewing vertically. */
     nav {
         flex-direction: row;
@@ -621,6 +669,7 @@ footer p {
     .cards {
         flex-direction: column;
         align-content: space-around;
+        align-items: space-around;
     }
 
     .card {
