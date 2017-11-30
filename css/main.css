@@ -17,6 +17,12 @@ html, body {
     overflow-x: hidden;
 }
 
+/*
+========================================
+                HTML Tags
+========================================
+*/
+
 ul {
     list-style-type: none;
 }
@@ -59,23 +65,6 @@ textarea {
 
 table {
     width: 100%;
-}
-
-section.services td, section.services th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-section.services tr:nth-child(even){background-color: #f2f2f2;}
-
-section.services tr:hover {background-color: #ddd;}
-
-section.services th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #2874a6;
-    color: white;
 }
 
 /*
@@ -177,10 +166,6 @@ nav ul li a.active {
 ========================================
 */
 
-main {
-    background-color: green;
-}
-
 section {
     background-color: #F8F8F8;
     padding: 5% 5% 5% 5%;
@@ -242,7 +227,6 @@ section.parallax .image i {
 
 section.parallax {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/workshop.jpg');
-
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -251,6 +235,136 @@ section.parallax {
 
 section.parallax .text {
     color: #fff;
+}
+
+section.services td, section.services th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+section.services tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+section.services tr:hover {
+    background-color: #ddd;
+}
+
+section.services th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #2874a6;
+    color: white;
+}
+
+section.cars {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-results {
+    border: 1px solid #a1a1a1;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 1em;
+    font-size: 0.9em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter-results p {
+    display: none;
+}
+
+.filter-results-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.car {
+    width: 100%;
+    border: 1px solid #a1a1a1;
+    padding: 1em;
+    margin-bottom: 1em;
+    color: #282828;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.car .image, .car .details, .car .buttons, .car .more-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.car .buttons, .car .details {
+    justify-content: space-around;
+}
+
+.car .more-details {
+    page-break-before: always;
+}
+
+.car .image {
+    margin-left: 0;
+}
+
+.car .image img {
+    width: 100%;
+}
+
+.cars-navigation {
+    text-align: center;
+}
+
+.single-car {
+    border: 1px solid #a1a1a1;
+    padding: 1em;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.single-car-top-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.single-car-top-row .details {
+    padding: 1em;
+    width: 100%;
+    flex: 1;
+}
+
+.single-car-top-row .details h3 {
+    font-size: 2em;
+}
+
+.single-car-top-row .gallery img {
+    width: 100%;
+    flex: 2;
+}
+
+.single-car-bottom-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-car-bottom-row .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.single-car-bottom-row a {
+    margin: 1em;
 }
 
 .button {
@@ -322,117 +436,7 @@ section.parallax .text {
     margin: 1em;
 }
 
-section.cars {
-    display: flex;
-    flex-direction: column;
-}
 
-.filter-results {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    border: 1px solid #a1a1a1;
-    width: 100%;
-    margin-bottom: 1em;
-    padding: 1em;
-
-    font-size: 0.9em;
-}
-
-.filter-results p {
-    display: none;
-}
-
-.filter-results-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.car {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-
-    border: 1px solid #a1a1a1;
-    padding: 1em;
-    margin-bottom: 1em;
-}
-
-.car .image, .car .details, .car .buttons, .car .more-details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.car .buttons, .car .details {
-    justify-content: space-around;
-}
-
-.car .more-details {
-    page-break-before: always;
-}
-
-.car .buttons a {
-
-}
-
-.car .image {
-    margin-left: 0;
-}
-
-.car .image img {
-    width: 100%;
-}
-
-.cars-navigation {
-    text-align: center;
-}
-
-.single-car {
-    border: 1px solid #a1a1a1;
-    padding: 1em;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.single-car-top-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.single-car-top-row .details {
-    padding: 1em;
-    width: 100%;
-    flex: 1;
-}
-
-.single-car-top-row .details h3 {
-    font-size: 2em;
-}
-
-.single-car-top-row .gallery img {
-    width: 100%;
-    flex: 2;
-}
-
-.single-car-bottom-row {
-    display: flex;
-    flex-direction: column;
-}
-
-.single-car-bottom-row .buttons {
-    display: flex;
-    justify-content: center;
-}
-
-.single-car-bottom-row a {
-    margin: 1em;
-}
 
 /*
 ========================================
@@ -585,10 +589,6 @@ footer p {
         width: 40%;
     }
 
-    .single-car {
-
-    }
-
     .single-car-top-row {
         flex-direction: column;
     }
@@ -607,9 +607,15 @@ footer p {
 
 @media screen and (max-width: 512px) {
     .car {
+        width: 100%;
+        border: none;
+
         flex-direction: column;
         align-items: center;
-        width: 100%;
+    }
+
+    .car:nth-child(odd) {
+        background-color: #eee;
     }
 
     .car .details {
@@ -635,6 +641,8 @@ footer p {
     }
 
     .filter-results {
+        border: none;
+
         flex-direction: column;
     }
 
