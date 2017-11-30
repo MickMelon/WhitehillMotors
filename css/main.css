@@ -29,7 +29,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: #2874a6;
+    color: #2e86c1;
 }
 
 a:hover {
@@ -77,7 +77,7 @@ nav {
     width: 100%;
     color: #fff;
     background-color: #17202a;
-    border-bottom: 0.5em solid #2874a6;
+    border-bottom: 0.5em solid #2e86c1;
 
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@ nav .logo h1 {
 }
 
 nav .logo h1:hover {
-    color: #2874a6;
+    color: #2e86c1;
 }
 
 nav .nav-icon {
@@ -117,12 +117,12 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #2874a6;
+    background-color: #2e86c1;
     text-decoration: none;
 }
 
 nav ul li a.active {
-    background-color: #2874a6;
+    background-color: #2e86c1;
     color: #fff;
 }
 
@@ -151,12 +151,12 @@ nav ul li a.active {
 
 .banner-text h1 {
     color: #fff;
-    background-color: rgba(40, 116, 166, 0.75); /* RGBA version of #2874a6 with opacity */
+    background-color: rgba(40, 116, 166, 0.75); /* RGBA version of #2e86c1 with opacity */
     font-size: 3em;
 }
 
 .banner-text h2 {
-    color: #2874a6;
+    color: #2e86c1;
     background-color: rgba(255, 255, 255, 0.75);
 }
 
@@ -183,7 +183,7 @@ section .text, .image {
 
 section .text {
     text-align: justify;
-    color: #282828;
+    color: #333;
 }
 
 section .text .text-head-center, section .text .text-body-center {
@@ -208,21 +208,21 @@ section .image {
     justify-content: center;
 }
 
-section.parallax .image i {
-    color: #fff; font-size: 20em;
-}
-
-.section-small {
+section.small {
     color: #fff;
-    background-color: #2874a6;
+    background-color: #2e86c1;
     text-align: center;
     padding: 1em;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.section-small .fa {
+section.small .fa {
     margin-right: 0.25em;
+}
+
+section.parallax .image i {
+    color: #fff; font-size: 20em;
 }
 
 section.parallax {
@@ -254,153 +254,16 @@ section.services th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #2874a6;
-    color: white;
-}
-
-section.cars {
-    display: flex;
-    flex-direction: column;
-}
-
-.filter-results {
-    border: 1px solid #a1a1a1;
-    width: 100%;
-    margin-bottom: 1em;
-    padding: 1em;
-    font-size: 0.9em;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.filter-results p {
-    display: none;
-}
-
-.filter-results-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.car {
-    width: 100%;
-    border: 1px solid #a1a1a1;
-    padding: 1em;
-    margin-bottom: 1em;
-    color: #282828;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.car .image, .car .details, .car .buttons, .car .more-details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.car .buttons, .car .details {
-    justify-content: space-around;
-}
-
-.car .more-details {
-    page-break-before: always;
-}
-
-.car .image {
-    margin-left: 0;
-}
-
-.car .image img {
-    width: 100%;
-}
-
-.cars-navigation {
-    text-align: center;
-}
-
-.single-car {
-    border: 1px solid #a1a1a1;
-    padding: 1em;
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.single-car-top-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.single-car-top-row .details {
-    padding: 1em;
-    width: 100%;
-    flex: 1;
-}
-
-.single-car-top-row .details h3 {
-    font-size: 2em;
-}
-
-.single-car-top-row .gallery img {
-    width: 100%;
-    flex: 2;
-}
-
-.single-car-bottom-row {
-    display: flex;
-    flex-direction: column;
-}
-
-.single-car-bottom-row .buttons {
-    display: flex;
-    justify-content: center;
-}
-
-.single-car-bottom-row a {
-    margin: 1em;
-}
-
-.button {
-    background-color: #2874a6;
-    border: none;
+    background-color: #2e86c1;
     color: #fff;
-    padding: 1em;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    cursor: pointer;
 }
 
-.button:hover {
-    text-decoration: none;
-    background-color: #1f618d;
-}
-
-.card-section {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-section h1 {
-    text-transform: uppercase;
-    font-size: 2em;
-}
-
-.cards {
+section.cards {
     display: flex;
     flex-direction: row;
 }
 
-.card {
+section.cards .card {
     border: 1px solid #aaa;
     margin: 1em;
 
@@ -410,30 +273,206 @@ section.cars {
     flex: 1;
 }
 
-.card-text {
+section.cards .card-text {
     padding: 1em;
 }
 
-.card-text h1, .card p {
+section.cards .card-text h1, .card p {
+    color: #333;
     text-align: center;
     padding: 0.5em;
 }
 
-.card-text h1 {
+section.cards .card-text h1 {
     text-transform: uppercase;
     font-size: 1.25em;
 }
 
-.card-text p {
+section.cards .card-text p {
     font-size: 0.9em;
 }
 
-.card img {
+section.cards .card img {
     width: 100%;
 }
 
-.card .button {
+section.cards .card .button {
     margin: 1em;
+}
+
+section.cars {
+    display: flex;
+    flex-direction: column;
+}
+
+section.cars .filter-results {
+    background-color: #fff;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 1em;
+    font-size: 0.9em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+section.cars .filter-results p {
+    display: none;
+}
+
+section.cars .filter-results-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+section.cars .car {
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 1em;
+    color: #282828;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+section.cars .car .image, .car .details, .car .buttons, .car .more-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+section.cars .car .buttons, .car .details {
+    justify-content: space-around;
+}
+
+section.cars .car .buttons {
+    justify-content: center;
+}
+
+section.cars .car .image {
+    margin-left: 0;
+}
+
+section.cars .car .image img {
+    width: 100%;
+    border: 1px solid #a1a1a1;
+}
+
+section.cars .car .more-details {
+    page-break-before: always;
+}
+
+section.cars .cars-navigation {
+    text-align: center;
+}
+
+section.cars .single-car {
+    padding: 1em;
+    width: 100%;
+    color: #333;
+
+    display: flex;
+    flex-direction: column;
+}
+
+section.cars .single-car-top-row {
+    display: flex;
+    flex-direction: row;
+}
+
+section.cars .single-car-top-row .details {
+    padding: 1em;
+    width: 100%;
+    flex: 1;
+}
+
+section.cars .single-car-top-row .details h3 {
+    font-size: 2em;
+}
+
+section.cars .single-car-top-row .gallery img {
+    width: 100%;
+    flex: 2;
+    border: 1px solid #a1a1a1;
+}
+
+section.cars .single-car-bottom-row {
+    display: flex;
+    flex-direction: column;
+}
+
+section.cars .single-car-bottom-row .more-details {
+    padding: 1em 0 1em 0;
+}
+
+section.cars .single-car-bottom-row .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+section.cars .single-car-bottom-row a {
+    margin-right: 1em;
+}
+
+section.cars td {
+    padding: 0.2em;
+}
+
+section.cars tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+section.cars tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+section.cars tr:last-child {
+    background-color: #2e86c1;
+    color: #fff;
+    font-size: 1.25em;
+}
+
+section.cars tr:hover {
+    background-color: #ddd;
+}
+
+section.cars tr:last-child:hover {
+    background-color: #2874a6;
+}
+
+.button {
+    background-color: #2e86c1;
+    color: #fff;
+    padding: 1em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    cursor: pointer;
+
+    border: none;
+    border-bottom: 4px solid #1f618d;
+    border-radius: 3px;
+    margin-bottom: 1px;
+}
+
+.button:hover {
+    text-decoration: none;
+    background-color: #2874a6;
+    border-bottom: 3px solid #1f618d;
+
+    margin-top: 1.5px;
+    margin-bottom: 0.5px;
 }
 
 
@@ -501,7 +540,7 @@ footer p {
 }
 
 #socialmedia a:hover {
-    color: #2874a6;
+    color: #2e86c1;
 }
 
 /*
@@ -522,7 +561,7 @@ footer p {
        ie: iPads and other tablets. Includes phone screens when used horizontally.
      */
     nav {
-        border-bottom: 0.25em solid #2874a6;
+        border-bottom: 0.25em solid #2e86c1;
         display: flex;
         flex-direction: column;
     }
@@ -579,79 +618,37 @@ footer p {
         width: 100%;
     }
 
-    .cards {
+    section.cards {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .card {
+    section.cards .card {
         flex: none;
         width: 40%;
     }
 
-    .single-car-top-row {
+    section.cars .single-car {
+        border: none;
+    }
+
+    section.cars .single-car-top-row {
         flex-direction: column;
     }
 
 }
 
 @media screen and (max-width: 750px) {
-    .car .buttons {
+    section.cards .car .buttons {
         page-break-before: always;
     }
 
-    .car .buttons a {
+    section.cards .car .buttons a {
         margin: 0.5em 0 0.5em 0;
     }
 }
 
 @media screen and (max-width: 512px) {
-    .car {
-        width: 100%;
-        border: none;
-
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .car:nth-child(odd) {
-        background-color: #eee;
-    }
-
-    .car .details {
-        width: 100%;
-    }
-
-    .car .details h3 {
-        text-align: center;
-    }
-
-    .car .details td {
-        width: 100%;
-    }
-
-    .car .buttons {
-        page-break-before: avoid;
-        width: 100%;
-    }
-
-    .car .image {
-        padding: 0; margin: 0;
-        width: 100%;
-    }
-
-    .filter-results {
-        border: none;
-
-        flex-direction: column;
-    }
-
-    .filter-results p {
-        display: inline;
-        text-align: center;
-        font-size: 1.2em;
-    }
-
     /* For mobile phones when viewing vertically. */
     nav {
         flex-direction: row;
@@ -673,7 +670,7 @@ footer p {
     }
 
     nav .nav-icon a:hover {
-        color: #2874a6;
+        color: #2e86c1;
     }
 
     nav ul {
@@ -725,15 +722,65 @@ footer p {
         width: 150%;
     }
 
-    .cards {
+    section.cards {
         flex-direction: column;
         align-content: space-around;
         align-items: space-around;
     }
 
-    .card {
+    section.cards .card {
         width: 80%;
         flex: 1;
+    }
+
+    section.cars .car {
+        width: 100%;
+        border: none;
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section.cars .car:nth-child(odd) {
+        background-color: #F8F8F8;
+    }
+
+    section.cars .car .details {
+        width: 100%;
+    }
+
+    section.cars .car .details h3 {
+        text-align: center;
+    }
+
+    section.cars .car .details td {
+        width: 100%;
+    }
+
+    section.cars .car .buttons {
+        page-break-before: avoid;
+        width: 100%;
+    }
+
+    section.cars .car .image {
+        padding: 0; margin: 0;
+        width: 100%;
+    }
+
+    section.cars .filter-results {
+        border: none;
+
+        flex-direction: column;
+    }
+
+    section.cars .filter-results p {
+        display: inline;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    section.cars .single-car-top-row h3 {
+        text-align: center;
     }
 
     footer {
