@@ -1,0 +1,39 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+
+}
+
+table td, table th {
+    padding: 1em;
+    border: 1px solid #000;
+}
+
+.container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+ul {
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+ul li a {
+    padding: 1em;
+}
