@@ -449,6 +449,10 @@ section.cars tr:last-child:hover {
     background-color: #2874a6;
 }
 
+section.error {
+    flex-direction: column;
+}
+
 .button {
     background-color: #2e86c1;
     color: #fff;
