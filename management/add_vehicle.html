@@ -18,11 +18,24 @@
         </div>
 
         <div class="container">
-            <p>Please enter the vehicle data carefuly. We do not yet have access to the
-                DVLA API to automatically gather vehicle information from the registration.</p>
-            </thead>
             <form>
                 Registration: <input type="text" name="registration" required />
+
+                Manufacturer:
+                <select>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+
+                Model:
+                <select>
+                    <option value="volvo">£100</option>
+                    <option value="saab">£200</option>
+                    <option value="opel">£300</option>
+                    <option value="audi">£400</option>
+                </select>
 
                 Year: <input type="text" name="year" required />
                 Engine: <input type="text" name="engine" required />
@@ -30,12 +43,9 @@
                 Fuel: <input type="text" name="fuel" required />
                 Transmission: <input type="text" name="transmission" required />
 
-
-                Make: <input type="text" name="make" required />
-                Model: <input type="text" name="model" required />
-
-                Mileage: <input type="number" name="mileage" required />
-                Price: <input type="number" name="price" required />
+                Mileage: <input type="text" name="mileage" required />
+                Price: <input type="text" name="price" required />
+                
                 <input type="submit" value="Add" />
             </form>
         </div>
