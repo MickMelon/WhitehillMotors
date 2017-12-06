@@ -350,7 +350,7 @@ section.cars .car .image, .car .details, .car .buttons, .car .more-details {
     flex: 1;
 }
 
-section.cars .car .buttons, .car .details {
+section.cars .car .details {
     justify-content: space-around;
 }
 
