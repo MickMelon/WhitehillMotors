@@ -16,7 +16,7 @@
         <header>
             <nav id="nav">
                 <div class="logo">
-                    <h1>Whitehill Motors</h1>
+                    <h1><a href="index.php?page=home">Whitehill Motors</a></h1>
                 </div>
 
                 <div class="nav-icon">
