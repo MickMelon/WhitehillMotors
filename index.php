@@ -1,4 +1,9 @@
 <?php
+// Include the PDO connection file for the MySQL database
+require_once('includes/connection.php');
+// Test to see if it works by getting an instance of the singleton class
+Db::getInstance();
+
 // Initialize the $page variable to make sure there are no issues
 $page = '';
 
@@ -18,6 +23,10 @@ if (isset($_GET['page'])) {
     $page = 'home';
 }
 
+// Include the model classes
+require_once('includes/models/car.class.php');
+require_once('includes/models/employee.class.php');
+
 // Include the header file
 require_once('includes/header.php');
 
@@ -26,4 +35,3 @@ require_once('pages/' . $page . '.php');
 
 // Include the footer file
 require_once('includes/footer.php');
-?>
