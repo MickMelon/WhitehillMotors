@@ -27,27 +27,31 @@
 
                 <ul>
                     <li>
-                        <a class="active" href="#"><i class="fa fa-home" aria-hidden="true"></i><br />Home</a>
+                        <a class="<?php echo ($page == 'home') ? 'active' : '' ?>" href="index.php?page=home"><i class="fa fa-home" aria-hidden="true"></i><br />Home</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i><br />About</a>
+                        <a class="<?php echo ($page == 'about') ? 'active' : '' ?>" href="index.php?page=about"><i class="fa fa-question-circle" aria-hidden="true"></i><br />About</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-car" aria-hidden="true"></i><br />Cars</a>
+                        <a class="<?php echo ($page == 'cars') ? 'active' : '' ?>" href="index.php?page=cars"><i class="fa fa-car" aria-hidden="true"></i><br />Cars</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-wrench" aria-hidden="true"></i><br />Services</a>
+                        <a class="<?php echo ($page == 'services') ? 'active' : '' ?>" href="index.php?page=services"><i class="fa fa-wrench" aria-hidden="true"></i><br />Services</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-address-book" aria-hidden="true"></i><br />Contact</a>
+                        <a class="<?php echo ($page == 'contact') ? 'active' : '' ?>" href="index.php?page=contact"><i class="fa fa-address-book" aria-hidden="true"></i><br />Contact</a>
                     </li>
                 </ul>
             </nav>
 
             <div class="banner">
                 <div class="banner-text">
-                    <h1>Welcome to Whitehill Motors</h1>
-                    <h2>Car Dealership and Auto Repairs in Forfar</h2>
+                    <?php if ($page == 'home') { ?>
+                        <h1>Welcome to Whitehill Motors</h1>
+                        <h2>Car Dealership and Auto Repairs in Forfar</h2>
+                    <?php } else { ?>
+                        <h1><?= $page ?></h1>
+                    <?php } ?>
                 </div>
             </div>
         </header>
