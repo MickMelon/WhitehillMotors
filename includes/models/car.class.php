@@ -32,7 +32,7 @@ class Car {
     public static function all() {
         $db = Db::getInstance();
 
-        $query = $db->prepare('SELECT * FROM `vehicle`');
+        $query = $db->prepare('SELECT * FROM vehicle');
         $query->execute();
 
         foreach ($query->fetchAll() as $car) {
@@ -57,7 +57,7 @@ class Car {
         $db = Db::getInstance();
 
         // Get main vehicle details
-        $query = $db->prepare('SELECT * FROM `vehicle` WHERE `Registration` = `:reg` LIMIT 1');
+        $query = $db->prepare('SELECT * FROM vehicle WHERE Registration = :reg LIMIT 1');
         $query->bindParam(':reg', $reg, PDO::PARAM_STR);
         $query->execute();
 
@@ -82,29 +82,29 @@ class Car {
     $mileage, $fuelType, $condition, $features, $description, $price) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('INSERT INTO `vehicle` (
-                `ModelID`,
-                `Engine`,
-                `Year`,
-                `Registration`,
-                `Mileage`,
-                `FuelType`,
-                `Condition`,
-                `Features`,
-                `Description`,
-                `Price`
+        $query = $db->prepare('INSERT INTO vehicle (
+                ModelID,
+                Engine,
+                Year,
+                Registration,
+                Mileage,
+                FuelType,
+                Condition,
+                Features,
+                Description,
+                Price
             )
             VALUES (
-                `:modelId`,
-                `:engine`,
-                `:year`,
-                `:registration`,
-                `:mileage`,
-                `:fuelType`,
-                `:condition`,
-                `:features`,
-                `:description`,
-                `:price`
+                :modelId,
+                :engine,
+                :year,
+                :registration,
+                :mileage,
+                :fuelType,
+                :condition,
+                :features,
+                :description,
+                :price
             )');
 
         $query->bindParam(':modelId', $modelId, PDO::PARAM_INT);
@@ -125,7 +125,7 @@ class Car {
     public static function getManufacturerName($manufacturerId) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('SELECT `Name` FROM `manufacturer` WHERE `ManufacturerID` = :manufacturerId LIMIT 1');
+        $query = $db->prepare('SELECT Name FROM manufacturer WHERE ManufacturerID = :manufacturerId LIMIT 1');
         $query->bindParam(':manufacturerId', $manufacturerId, PDO::PARAM_INT);
         $query->execute();
 
@@ -137,7 +137,7 @@ class Car {
     public static function getModelName($modelId) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('SELECT `Name` FROM `model` WHERE `ModelID` = :modelId LIMIT 1');
+        $query = $db->prepare('SELECT Name FROM model WHERE ModelID = :modelId LIMIT 1');
         $query->bindParam(':modelId', $modelId, PDO::PARAM_INT);
         $query->execute();
 
@@ -149,7 +149,7 @@ class Car {
     public static function getManufacturerId($modelId) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('SELECT `ManufacturerID` FROM `model` WHERE `ModelID` = :modelId LIMIT 1');
+        $query = $db->prepare('SELECT ManufacturerID FROM model WHERE ModelID = :modelId LIMIT 1');
         $query->bindParam(':modelId', $modelId, PDO::PARAM_INT);
         $query->execute();
 
@@ -157,4 +157,6 @@ class Car {
 
         return $model['ManufacturerID'];
     }
+
+    // update
 }
