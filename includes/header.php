@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Whitehill Motors: Home</title>
+        <title>Whitehill Motors: <?= formatPageTitle($page); ?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,9 +48,8 @@
                 <div class="banner-text">
                     <?php if ($page == 'home') { ?>
                         <h1>Welcome to Whitehill Motors</h1>
-                        <h2>Car Dealership and Auto Repairs in Forfar</h2>
                     <?php } else { ?>
-                        <h1><?= $page ?></h1>
+                        <h1><?= formatPageTitle($page); ?></h1>
                     <?php } ?>
                 </div>
             </div>

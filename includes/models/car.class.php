@@ -50,7 +50,6 @@ class Car {
                 $car['Description'],
                 $car['Price']);
         }
-echo "test";
         return $list;
     }
 

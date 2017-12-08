@@ -5,6 +5,7 @@ $list = Car::all();
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
 
             <section class="cars">
+
 <?php foreach ($list as $car) { ?>
     <div class="car">
         <div class="image">
@@ -18,7 +19,6 @@ $list = Car::all();
                 <tr><td><b>Year:</b></td><td><?= $car->year; ?></td></tr>
                 <tr><td><b>Engine:</b></td><td><?= $car->engine; ?></td></tr>
                 <tr><td><b>Fuel Type:</b></td><td><?= $car->fuelType; ?></td></tr>
-                <tr><td><b>Transmission:</b></td><td><?= $car->transmission; ?></td></tr>
                 <tr><td><b>Price:</b></td><td><b>£<?= $car->price; ?></b></td></tr>
             </table>
         </div>
@@ -29,8 +29,6 @@ $list = Car::all();
             <a href="#" class="button">More Details</a>
         </div>
     </div>
-
-
 <?php } ?>
 
                 <div class="cars-navigation">
