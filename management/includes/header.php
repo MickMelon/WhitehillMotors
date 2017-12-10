@@ -13,8 +13,9 @@
                 <ul>
                     <li><a href="index.php?page=home">Home</a></li>
                     <li><a href="index.php?page=add_vehicle">Add Vehicle</a></li>
-                    <li><a href="index.php?page=newsletter">Newsletter</a></li>
                     <li><a href="index.php?page=change_password">Change Password</a></li>
+                    <?php if (Employee::isManager()) echo '<li><a href="index.php?page=add_employee">Add Employee</a></li>'; ?>
+                    <li><a href="login.php?action=logout">Logout</a></li>
                 </ul>
             </div>
         </header>

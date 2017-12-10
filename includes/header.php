@@ -48,6 +48,8 @@
                 <div class="banner-text">
                     <?php if ($page == 'home') { ?>
                         <h1>Welcome to Whitehill Motors</h1>
+                    <?php } else if ($page == 'car') { ?>
+                        
                     <?php } else { ?>
                         <h1><?= formatPageTitle($page); ?></h1>
                     <?php } ?>

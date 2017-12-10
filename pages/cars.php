@@ -6,10 +6,20 @@ $list = Car::all();
 
             <section class="cars">
 
-<?php foreach ($list as $car) { ?>
+<?php foreach ($list as $car) {
+    if (file_exists('img/cars/' . $car->registration . '.jpg')) {
+        $image = $car->registration . '.jpg';
+    } else if (file_exists('img/cars/' . $car->registration . '.png')) {
+        $image = $car->registration . '.png';
+    } else if (file_exists('img/cars/' . $car->registration . '.jpeg')) {
+        $image = $car->registration . '.jpeg';
+    } else {
+        $image = 'not_found.png';
+    }
+    ?>
     <div class="car">
         <div class="image">
-            <img src="img/vw_golf_r.jpg" />
+            <img src="img/cars/<?= $image; ?>" />
         </div>
         <div class="details">
             <h1><?= $car->manufacturer; ?> <?= $car->model; ?></h1>
@@ -24,9 +34,9 @@ $list = Car::all();
         </div>
 
         <div class="buttons">
-            <a href="#" class="button">Call Us</a>
-            <a href="#" class="button">Enquire</a>
-            <a href="#" class="button">More Details</a>
+            <a href="tel:01307461234" class="button">Call Us</a>
+            <a href="index.php?page=contact" class="button">Enquire</a>
+            <a href="index.php?page=car&id=<?= $car->vehicleId; ?>" class="button">More Details</a>
         </div>
     </div>
 <?php } ?>

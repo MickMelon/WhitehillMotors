@@ -53,7 +53,32 @@ class Car {
         return $list;
     }
 
-    public static function find($reg) {
+    public static function findByVehicleId($vehicleId) {
+        $db = Db::getInstance();
+
+        // Get main vehicle details
+        $query = $db->prepare('SELECT * FROM vehicle WHERE VehicleID = :vehicleId LIMIT 1');
+        $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_STR);
+        $query->execute();
+
+        $car = $query->fetch();
+
+        return new Car(
+            $car['VehicleID'],
+            Car::getModelName($car['ModelID']),
+            Car::getManufacturerName(Car::getManufacturerId($car['ModelID'])),
+            $car['Engine'],
+            $car['Year'],
+            $car['Registration'],
+            $car['Mileage'],
+            $car['FuelType'],
+            $car['Condition'],
+            $car['Features'],
+            $car['Description'],
+            $car['Price']);
+    }
+
+    public static function findByReg($reg) {
         $db = Db::getInstance();
 
         // Get main vehicle details
@@ -89,11 +114,10 @@ class Car {
                 Registration,
                 Mileage,
                 FuelType,
-                Condition,
+                `Condition`,
                 Features,
                 Description,
-                Price
-            )
+                Price)
             VALUES (
                 :modelId,
                 :engine,
@@ -104,11 +128,10 @@ class Car {
                 :condition,
                 :features,
                 :description,
-                :price
-            )');
+                :price)');
 
         $query->bindParam(':modelId', $modelId, PDO::PARAM_INT);
-        $query->bindParam(':engine', $engine, PDO::PARAM_FLOAT);
+        $query->bindParam(':engine', $engine, PDO::PARAM_STR);
         $query->bindParam(':year', $year, PDO::PARAM_INT);
         $query->bindParam(':registration', $registration, PDO::PARAM_STR);
         $query->bindParam(':mileage', $mileage, PDO::PARAM_INT);
@@ -117,9 +140,32 @@ class Car {
         $query->bindParam(':condition', $condition, PDO::PARAM_STR);
         $query->bindParam(':features', $features, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
-        $query->bindParam(':price', $price, PDO::PARAM_FLOAT);
+        $query->bindParam(':price', $price, PDO::PARAM_STR);
 
         $query->execute();
+    }
+
+    public static function getAllManufacturers() {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('SELECT * FROM manufacturer');
+        $query->execute();
+
+        $manufacturers = $query->fetchAll();
+
+        return $manufacturers;
+    }
+
+    public static function getAllModelsForManufacturer($manufacturerId) {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('SELECT * FROM model WHERE ManufacturerID = :manufacturerId');
+        $query->bindParam(':manufacturerId', $manufacturerId, PDO::PARAM_INT);
+        $query->execute();
+
+        $models = $query->fetchAll();
+
+        return $models;
     }
 
     public static function getManufacturerName($manufacturerId) {

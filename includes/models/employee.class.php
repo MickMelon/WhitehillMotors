@@ -21,12 +21,14 @@ class Employee {
     }
 
     public static function insert($username, $password) {
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+
         $db = Db::getInstance();
 
         $query = $db->prepare('INSERT INTO employee (Username, Password)
-            VALUES (:username, :password)');
+            VALUES (:username, :hash)');
         $query->bindParam(':username', $username, PDO::PARAM_STR);
-        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        $query->bindParam(':hash', $hash, PDO::PARAM_STR);
 
         $query->execute();
     }
@@ -49,16 +51,33 @@ class Employee {
 
         if (!password_verify($password, $employee->password)) return false;
 
-        // Set the session or some shit here
-        session_start();
-        $_SESSION['login'] = $username;
-        header("Location: index.php?page=home");
+        Employee::onLogin($employee);
 
         return true;
+    }
+
+    private static function onLogin($employee) {
+        // Stuff that needs to be set when the employee logs in
+        session_start();
+        $_SESSION['login'] = $employee->username;
     }
 
     public static function logout() {
         session_destroy();
         header("Location: index.php?page=login");
+    }
+
+    public static function isLoggedIn() {
+        if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
+            return true;
+        }
+        return false;
+    }
+
+    public static function isManager() {
+        if (Employee::isLoggedIn() && $_SESSION['login'] == 'manager') {
+            return true;
+        }
+        return false;
     }
 }
