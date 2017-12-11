@@ -6,7 +6,6 @@ if (isset($_POST['manufacturer'])) {
     $models = Car::getAllModelsForManufacturer($_POST['manufacturer']);
 }
 
-$done = 0;
 if (isset($_POST['submit'])) {
     $model = $_POST['modelId'];
     $engine = $_POST['engine'];
@@ -19,47 +18,12 @@ if (isset($_POST['submit'])) {
     $description = $_POST['description'];
     $price = $_POST['price'];
 
-    echo $_FILES['image']['name'];
+    require_once('includes/upload.php');
 
-    // do this when details are done
-    if (isset($_FILES['image'])) {
-        echo "image";
-
-      $errors = array();
-      $file_name = $_FILES['image']['name'];
-      $file_size = $_FILES['image']['size'];
-      $file_tmp = $_FILES['image']['tmp_name'];
-      $file_type = $_FILES['image']['type'];
-      $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
-
-      $extensions = array("jpeg","jpg","png");
-
-      if (!in_array($file_ext, $extensions)) {
-         $errors[] = "File extension not allowed, please choose a JPEG or PNG file.";
-      }
-
-      if ($file_size > 2097152) {
-         $errors[] = 'File size cannot be larger than 2MB';
-      }
-
-      if (empty($errors)) {
-         $temp = explode(".", $file_name);
-         $newname = $registration . '.' . end($temp);
-         move_uploaded_file($file_tmp, "../img/cars/". $newname);
-         echo "Success";
-      } else {
-         print_r($errors);
-      }
-
-      $done = 1;
-  }
-if ($done == 1) {
     Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
 
-    $success = 'Vehicle successfully added.';
+    $success[] = 'Vehicle successfully added.';
 }
-
-  }
 ?>
 
 <div class="container">
@@ -68,7 +32,7 @@ if ($done == 1) {
             <p><?= $error; ?></p>
     <?php }
     } else if (isset($success)) { ?>
-        <p><?= $success; ?></p>
+        <p><?= $success[0]; ?></p>
     <?php } ?>
 
 
@@ -92,7 +56,7 @@ if ($done == 1) {
         </select>
     </form>
 
-    <form name="addcar" method="post" action="" enctype="multipart/form-data">
+    <form name="addcar" method="post" action="" enctype="multipart/form-data" onsubmit="return validateForm()" id="form">
         <input type="text" name="modelId" id="modelId" style="display: none;" value="<?= $models[0]['ModelID']; ?>" />
 
         Engine: <input type="text" name="engine" required />
@@ -137,5 +101,34 @@ if ($done == 1) {
         var model = document.getElementById('model');
         var modelId = model.options[model.selectedIndex].value;
         document.getElementById('modelId').value = modelId;
+    }
+
+    function validateForm() {
+        var engine = document.forms["form"]["engine"].value;
+        var year = document.forms["form"]["year"].value;
+        var registration = document.forms["form"]["registration"].value;
+        var mileage = document.forms["form"]["mileage"].value;
+        var features = document.forms["form"]["features"].value;
+        var description = document.forms["form"]["description"].value;
+        var price = document.forms["form"]["price"].value;
+
+        // is not a number
+        if (isNaN(engine)) {
+            alert("Engine size must be a number");
+            return false;
+        }
+        if (isNaN(year)) {
+            alert("Year must be a number");
+            return false;
+        }
+        if (isNaN(mileage)) {
+            alert("Mileage must be a number");
+            return false;
+        }
+        if (isNaN(price)) {
+            alert("Price must be a number!");
+            return false;
+        }
+
     }
 </script>

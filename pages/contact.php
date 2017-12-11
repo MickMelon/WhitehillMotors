@@ -6,7 +6,7 @@
             <h1 class="text-head-center">Give us a shout!</h1>
             <p class="text-body-center">If you would like to get in touch, fill out the form below and we will get back to you as soon
                 as we can!</p>
-            <form action="/action_page.php">
+            <form action="" onsubmit="return submitForm()" id="form" method="post">
 
               <label for="fname">Name:</label>
               <input type="text" id="fname" name="firstname" placeholder="Your name..">
@@ -29,3 +29,17 @@
 
 
 </main>
+
+<script>
+    function submitForm() {
+        firstname = document.forms["form"]["firstname"].value;
+        lastname = document.forms["form"]["lastname"].value;
+        subject = document.forms["form"]["subject"].value;
+
+        if (firstname == '' || lastname == '' || subject == '') {
+            alert("Please fill out all the fields.");
+            return false;
+        }
+        alert("Your message has been sent! We will get back to you as soon as possible.");
+    }
+</script>

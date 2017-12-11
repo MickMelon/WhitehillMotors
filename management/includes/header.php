@@ -10,6 +10,7 @@
         <header>
             <div class="container">
                 <h1>Management: <?= formatPageTitle($page); ?></h1>
+                <p>Hello, <?= $_SESSION['login']; ?>! You logged in at <?= $_COOKIE['date']; ?></p>
                 <ul>
                     <li><a href="index.php?page=home">Home</a></li>
                     <li><a href="index.php?page=add_vehicle">Add Vehicle</a></li>

@@ -10,7 +10,7 @@ session_start();
 
 if (Employee::isLoggedIn()) {
     header("Location: index.php?page=home");
-} else echo "what";
+}
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'login') {
