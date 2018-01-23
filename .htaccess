@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule ^includes/.*$ index.php
+RewriteRule ^routes.php$ index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^cars/?([0-9]+)/?$ index.php?controller=cars&action=single&id=$1 [L]
+RewriteRule ^cars/?$ index.php?controller=cars&action=index [L]
+RewriteRule ^/?([a-z]+)/?$ index.php?controller=pages&action=$1 [L]
