@@ -85,6 +85,7 @@ class Employee {
         return false;
     }
 
+    // Should be in the controller
     public static function isManager() {
         if (Employee::isLoggedIn() && $_SESSION['login'] == 'manager') {
             return true;

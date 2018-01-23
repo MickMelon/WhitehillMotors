@@ -135,7 +135,6 @@ class Car {
         $query->bindParam(':year', $year, PDO::PARAM_INT);
         $query->bindParam(':registration', $registration, PDO::PARAM_STR);
         $query->bindParam(':mileage', $mileage, PDO::PARAM_INT);
-
         $query->bindParam(':fuelType', $fuelType, PDO::PARAM_STR);
         $query->bindParam(':condition', $condition, PDO::PARAM_STR);
         $query->bindParam(':features', $features, PDO::PARAM_STR);
@@ -146,32 +145,31 @@ class Car {
     }
 
     public static function update($vehicleId, $engine, $year, $registration,
-        $mileage, $fuelType, $features, $description, $price) {
-            $db = Db::getInstance();
+    $mileage, $fuelType, $features, $description, $price) {
+        $db = Db::getInstance();
 
-            $query = $db->prepare('UPDATE vehicle SET
-                    Engine = :engine,
-                    Year = :year,
-                    Registration = :registration,
-                    Mileage = :mileage,
-                    FuelType = :fuelType,
-                    Features = :features,
-                    Description = :description,
-                    Price = :price
-                    WHERE VehicleID = :vehicleId');
+        $query = $db->prepare('UPDATE vehicle SET
+                Engine = :engine,
+                Year = :year,
+                Registration = :registration,
+                Mileage = :mileage,
+                FuelType = :fuelType,
+                Features = :features,
+                Description = :description,
+                Price = :price
+                WHERE VehicleID = :vehicleId');
 
-            $query->bindParam(':engine', $engine, PDO::PARAM_STR);
-            $query->bindParam(':year', $year, PDO::PARAM_INT);
-            $query->bindParam(':registration', $registration, PDO::PARAM_STR);
-            $query->bindParam(':mileage', $mileage, PDO::PARAM_INT);
+        $query->bindParam(':engine', $engine, PDO::PARAM_STR);
+        $query->bindParam(':year', $year, PDO::PARAM_INT);
+        $query->bindParam(':registration', $registration, PDO::PARAM_STR);
+        $query->bindParam(':mileage', $mileage, PDO::PARAM_INT);
+        $query->bindParam(':fuelType', $fuelType, PDO::PARAM_STR);
+        $query->bindParam(':features', $features, PDO::PARAM_STR);
+        $query->bindParam(':description', $description, PDO::PARAM_STR);
+        $query->bindParam(':price', $price, PDO::PARAM_STR);
+        $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
 
-            $query->bindParam(':fuelType', $fuelType, PDO::PARAM_STR);
-            $query->bindParam(':features', $features, PDO::PARAM_STR);
-            $query->bindParam(':description', $description, PDO::PARAM_STR);
-            $query->bindParam(':price', $price, PDO::PARAM_STR);
-            $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
-
-            $query->execute();
+        $query->execute();
     }
 
     public static function delete($vehicleId) {

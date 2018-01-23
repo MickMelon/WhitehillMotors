@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Whitehill Motors: <?= formatPageTitle($page); ?></title>
+        <title>Whitehill Motors: %TITLE%</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,32 +27,26 @@
 
                 <ul>
                     <li>
-                        <a class="<?php echo ($page == 'home') ? 'active' : '' ?>" href="index.php?page=home"><i class="fa fa-home" aria-hidden="true"></i><br />Home</a>
+                        <a class="<?php echo ($action == 'home') ? 'active' : '' ?>" href="index.php?controller=pages&action=home"><i class="fa fa-home" aria-hidden="true"></i><br />Home</a>
                     </li>
                     <li>
-                        <a class="<?php echo ($page == 'about') ? 'active' : '' ?>" href="index.php?page=about"><i class="fa fa-question-circle" aria-hidden="true"></i><br />About</a>
+                        <a class="<?php echo ($action == 'about') ? 'active' : '' ?>" href="index.php?controller=pages&action=about"><i class="fa fa-question-circle" aria-hidden="true"></i><br />About</a>
                     </li>
                     <li>
-                        <a class="<?php echo ($page == 'cars') ? 'active' : '' ?>" href="index.php?page=cars"><i class="fa fa-car" aria-hidden="true"></i><br />Cars</a>
+                        <a class="<?php echo ($controller == 'cars') ? 'active' : '' ?>" href="index.php?controller=cars&action=index"><i class="fa fa-car" aria-hidden="true"></i><br />Cars</a>
                     </li>
                     <li>
-                        <a class="<?php echo ($page == 'services') ? 'active' : '' ?>" href="index.php?page=services"><i class="fa fa-wrench" aria-hidden="true"></i><br />Services</a>
+                        <a class="<?php echo ($action == 'services') ? 'active' : '' ?>" href="index.php?controller=pages&action=services"><i class="fa fa-wrench" aria-hidden="true"></i><br />Services</a>
                     </li>
                     <li>
-                        <a class="<?php echo ($page == 'contact') ? 'active' : '' ?>" href="index.php?page=contact"><i class="fa fa-address-book" aria-hidden="true"></i><br />Contact</a>
+                        <a class="<?php echo ($action == 'contact') ? 'active' : '' ?>" href="index.php?controller=pages&action=contact"><i class="fa fa-address-book" aria-hidden="true"></i><br />Contact</a>
                     </li>
                 </ul>
             </nav>
 
             <div class="banner">
                 <div class="banner-text">
-                    <?php if ($page == 'home') { ?>
-                        <h1>Welcome to Whitehill Motors</h1>
-                    <?php } else if ($page == 'car') { ?>
-                        
-                    <?php } else { ?>
-                        <h1><?= formatPageTitle($page); ?></h1>
-                    <?php } ?>
+                    <h1>%BANNERTEXT%</h1>
                 </div>
             </div>
         </header>

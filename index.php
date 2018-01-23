@@ -1,22 +1,49 @@
 <?php
 // Include the PDO connection file for the MySQL database
 require_once('includes/connection.php');
-// Include the functions file
 require_once('includes/functions.php');
 
-// Get the current page that is set in the GET parameter
-// ie. index.php?page=about
-$page = getPage();
+// Check if the controller and action parameters are set
+if (isset($_GET['controller']) && isset($_GET['action'])) {
+    // Get the specified controller and action
+    $controller = $_GET['controller'];
+    $action = $_GET['action'];
+} else {
+    // Set default controller and action
+    $controller = 'pages';
+    $action = 'home';
+}
 
-// Include the model classes
-require_once('includes/models/car.class.php');
-require_once('includes/models/employee.class.php');
+// Start output buffer. Used to change page title after page has loaded
+ob_start();
 
-// Include the header file
+// Set up page
 require_once('includes/header.php');
-
-// Include the page specified above
-require_once('pages/' . $page . '.php');
-
-// Include the footer file
+require_once('routes.php');
 require_once('includes/footer.php');
+
+// Format the page title from the action name
+$pageTitle = '';
+
+if ($controller == 'cars') {
+    $pageTitle = 'New and Used Cars';
+} else {
+    $pageTitle = formatPageTitle($action);
+}
+
+// Get the contents of the page
+$buffer = ob_get_contents();
+ob_end_clean();
+// Replace %TITLE% in the header.php file with the title of the action
+$buffer = str_replace("%TITLE%", $pageTitle, $buffer);
+
+// Replace the page header text depending on what page we are on
+if ($pageTitle == 'Home') {
+    $pageTitle = 'Welcome to Whitehill Motors';
+}
+
+// Replace the banner text
+$buffer = str_replace("%BANNERTEXT%", $pageTitle, $buffer);
+
+// Display the page with the replaced title
+echo $buffer;
