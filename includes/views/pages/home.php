@@ -11,7 +11,7 @@
                             advanced diagnostics.
                     </p>
 
-                    <a href="index.php?controller=pages&action=about" class="button button-stretch">Learn More</a>
+                    <a href="about" class="button button-stretch">Learn More</a>
                 </div>
 
                 <div class="image">
@@ -37,7 +37,7 @@
                         the value. Contact us after your auto accident and receive the highest quality of work in the Angus area.
                     </p>
 
-                    <a href="index.php?controller=pages&action=services" class="button button-stretch">Get Started</a>
+                    <a href="services" class="button button-stretch">Get Started</a>
             </section>
 
             <section class="cards">
@@ -47,7 +47,7 @@
                             <h1>New Cars</h1>
                             <p>Have a look at our range of brand new cars!</p>
                         </div>
-                        <a href="index.php?controller=cars&action=index" class="button">New Cars</a>
+                        <a href="cars" class="button">New Cars</a>
                     </div>
                     <div class="card">
                         <div class="card-image"><img src="img/usedcar.jpg" /></div>
@@ -55,7 +55,7 @@
                             <h1>Used Cars</h1>
                             <p>Check out all our top quality used cars we have on sale!</p>
                         </div>
-                        <a href="index.php?controller=cars&action=index" class="button">Used Cars</a>
+                        <a href="cars" class="button">Used Cars</a>
                     </div>
                     <div class="card">
                         <div class="card-image"><img src="img/mechanic.png" /></div>
@@ -63,7 +63,7 @@
                             <h1>Services</h1>
                             <p>Find out all the services that we offer!</p>
                         </div>
-                        <a href="index.php?controller=pages&action=services" class="button">Services</a>
+                        <a href="services" class="button">Services</a>
                     </div>
                     <div class="card">
                         <div class="card-image"><img src="img/contact.jpg" /></div>
@@ -71,7 +71,7 @@
                             <h1>Get In Touch</h1>
                             <p>Learn about the many ways to get in contact with us!</p>
                         </div>
-                        <a href="index.php?controller=pages&action=contact" class="button">Get In Touch</a>
+                        <a href="contact" class="button">Get In Touch</a>
                     </div>
             </section>
 

@@ -32,8 +32,8 @@
 
         <div class="buttons">
             <a href="tel:01307461234" class="button">Call Us</a>
-            <a href="index.php?controller=pages&action=contact" class="button">Enquire</a>
-            <a href="index.php?controller=cars&action=single&id=<?= $car->vehicleId; ?>" class="button">More Details</a>
+            <a href="contact" class="button">Enquire</a>
+            <a href="cars/<?= $car->vehicleId; ?>" class="button">More Details</a>
         </div>
     </div>
 <?php } ?>

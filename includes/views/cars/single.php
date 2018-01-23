@@ -27,7 +27,7 @@
             <div class="single-car-bottom-row">
                 <div class="buttons">
                     <a href="tel:01307461234" class="button">Call Us</a>
-                    <a href="index.php?page=contact" class="button">Enquire</a>
+                    <a href="contact" class="button">Enquire</a>
                 </div>
             </div>
 

@@ -11,19 +11,20 @@
                 $car = Car::findByVehicleId($vehicleId);
 
                 if ($car->model == '') {
-                    call('pages', 'error');
-                }
-
-                if (file_exists('img/cars/' . $car->registration . '.jpg')) {
-                    $image = $car->registration . '.jpg';
-                } else if (file_exists('img/cars/' . $car->registration . '.png')) {
-                    $image = $car->registration . '.png';
-                } else if (file_exists('img/cars/' . $car->registration . '.jpeg')) {
-                    $image = $car->registration . '.jpeg';
+                    $errorMessage = 'Cannot find a vehicle for the specified ID.';
+                    require_once('includes/views/pages/error.php');
                 } else {
-                    $image = 'not_found.png';
+                    if (file_exists('img/cars/' . $car->registration . '.jpg')) {
+                        $image = $car->registration . '.jpg';
+                    } else if (file_exists('img/cars/' . $car->registration . '.png')) {
+                        $image = $car->registration . '.png';
+                    } else if (file_exists('img/cars/' . $car->registration . '.jpeg')) {
+                        $image = $car->registration . '.jpeg';
+                    } else {
+                        $image = 'not_found.png';
+                    }
+                    require_once('includes/views/cars/single.php');
                 }
-                require_once('includes/views/cars/single.php');
             } else {
                 call('pages', 'error');
             }

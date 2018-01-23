@@ -1,8 +1,8 @@
 <?php
 // Include the PDO connection file for the MySQL database
-require_once('../includes/connection.php');
+require_once('includes/connection.php');
 // Include the functions file
-require_once('../includes/functions.php');
+require_once('includes/functions.php');
 
 // Include the model classes
 require_once('../includes/models/car.class.php');
