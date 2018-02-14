@@ -9,10 +9,10 @@
             <form action="" onsubmit="return submitForm()" id="form" method="post">
 
               <label for="fname">Name:</label>
-              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+              <input type="text" id="name" name="name" placeholder="Your name..">
 
               <label for="lname">Email:</label>
-              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+              <input type="text" id="email" name="email" placeholder="Your last name..">
 
               <label for="subject">Message:</label>
               <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
@@ -32,14 +32,21 @@
 
 <script>
     function submitForm() {
-        firstname = document.forms["form"]["firstname"].value;
-        lastname = document.forms["form"]["lastname"].value;
+        name = document.forms["form"]["name"].value;
+        email = document.forms["form"]["email"].value;
         subject = document.forms["form"]["subject"].value;
 
-        if (firstname == '' || lastname == '' || subject == '') {
+        if (name == '' || subject == '' || email == '') {
             alert("Please fill out all the fields.");
             return false;
         }
+
+        // Now to check the email address to make sure it is valid
+        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            alert("You have entered an invalid email address! Example: jane-doe@gmail.com");
+            return false;
+        }
+
         alert("Your message has been sent! We will get back to you as soon as possible.");
     }
 </script>
