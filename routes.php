@@ -3,7 +3,7 @@
 $controllers = array('pages' => ['home', 'error', 'contact', 'about', 'services'],
                      'cars' => ['index', 'single']);
 
-// Check that the requestesd controller anda ction are allowed
+// Check that the requested controller anda ction are allowed
 if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {
         call($controller, $action);

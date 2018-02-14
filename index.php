@@ -25,6 +25,8 @@ require_once('includes/footer.php');
 // Format the page title from the action name
 $pageTitle = '';
 
+// Format the page title. If its one of the cars pages, just set the page
+// title to 'New and Used Cars'
 if ($controller == 'cars') {
     $pageTitle = 'New and Used Cars';
 } else {
@@ -41,7 +43,6 @@ $buffer = str_replace("%TITLE%", $pageTitle, $buffer);
 if ($pageTitle == 'Home') {
     $pageTitle = 'Welcome to Whitehill Motors';
 }
-
 // Replace the banner text
 $buffer = str_replace("%BANNERTEXT%", $pageTitle, $buffer);
 
