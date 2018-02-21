@@ -1,4 +1,8 @@
 <?php
+/*
+    REMEMBER YOU NEEDED TO ADD A NEW COLUMN TO REVIEWS. MENTION THAT IN THE LOG
+*/
+
 // Include the PDO connection file for the MySQL database
 require_once('includes/connection.php');
 require_once('includes/functions.php');
