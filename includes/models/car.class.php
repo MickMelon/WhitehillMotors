@@ -58,7 +58,7 @@ class Car {
 
         // Get main vehicle details
         $query = $db->prepare('SELECT * FROM vehicle WHERE VehicleID = :vehicleId LIMIT 1');
-        $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_STR);
+        $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
         $query->execute();
 
         $car = $query->fetch();
