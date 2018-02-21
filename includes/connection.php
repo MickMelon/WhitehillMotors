@@ -1,7 +1,8 @@
 <?php
 /* Using a singleton design pattern for the database class because we only
  * ever need one instance of this. Constructor and clone set to private so it
- * cannot be created outside this class.
+ * cannot be created outside this class. Utilizing lazy-loading - the object is
+ * only created when it is first needed.
  *
  * Access to the database is gained through calling Db::getInstance();
  */

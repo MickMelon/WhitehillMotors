@@ -33,9 +33,13 @@ if ($controller == 'cars') {
     $pageTitle = formatPageTitle($action);
 }
 
+/* The code below is going to find %TITLE% on the HTML page and replace it with
+the current page title */
+
 // Get the contents of the page
 $buffer = ob_get_contents();
 ob_end_clean();
+
 // Replace %TITLE% in the header.php file with the title of the action
 $buffer = str_replace("%TITLE%", $pageTitle, $buffer);
 

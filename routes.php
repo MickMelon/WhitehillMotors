@@ -14,6 +14,8 @@ if (array_key_exists($controller, $controllers)) {
     call('pages', 'error');
 }
 
+// Instantiate the specified controller and carry out the specified action
+// on the controller
 function call($controller, $action) {
     // Require the file that matches the controller name
     require_once('includes/controllers/' . $controller . '_controller.class.php');
