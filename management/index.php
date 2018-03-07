@@ -7,6 +7,7 @@ require_once('includes/functions.php');
 // Include the model classes
 require_once('../includes/models/car.class.php');
 require_once('../includes/models/employee.class.php');
+require_once('../includes/models/review.class.php');
 
 // Start the PHP session
 session_start();

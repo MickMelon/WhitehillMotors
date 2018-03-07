@@ -12,6 +12,8 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     // Get the specified controller and action
     $controller = $_GET['controller'];
     $action = $_GET['action'];
+    echo $controller;
+    echo $action;
 } else {
     // Set default controller and action
     $controller = 'pages';
@@ -28,31 +30,14 @@ require_once('includes/footer.php');
 
 // Format the page title from the action name
 $pageTitle = '';
-
 // Format the page title. If its one of the cars pages, just set the page
 // title to 'New and Used Cars'
 if ($controller == 'cars') {
     $pageTitle = 'New and Used Cars';
+} else if ($controller == 'reviews') {
+    $pageTitle = 'Reviews';
 } else {
     $pageTitle = formatPageTitle($action);
 }
 
-/* The code below is going to find %TITLE% on the HTML page and replace it with
-the current page title */
-
-// Get the contents of the page
-$buffer = ob_get_contents();
-ob_end_clean();
-
-// Replace %TITLE% in the header.php file with the title of the action
-$buffer = str_replace("%TITLE%", $pageTitle, $buffer);
-
-// Replace the page header text depending on what page we are on
-if ($pageTitle == 'Home') {
-    $pageTitle = 'Welcome to Whitehill Motors';
-}
-// Replace the banner text
-$buffer = str_replace("%BANNERTEXT%", $pageTitle, $buffer);
-
-// Display the page with the replaced title
-echo $buffer;
+setPageTitle($pageTitle);

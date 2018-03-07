@@ -19,10 +19,6 @@ $list = Car::all();
 
 <script>
     function confirmDelete() {
-        if (confirm("Are you sure you want to delete this vehicle?")) {
-            return true;
-        } else {
-            return false;
-        }
+        return confirm("Are you sure you want to delete this vehicle?");
     }
 </script>

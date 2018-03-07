@@ -1,4 +1,24 @@
 <?php
+function getPage() {
+    // Check to see if the page parameter has been set
+    if (isset($_GET['page'])) {
+        // Make sure that the requested file actually exists
+        if (file_exists('pages/' . $_GET['page'] . '.php')) {
+            // If it exists, display the page
+            $page = $_GET['page'];
+        } else {
+            // If it doesn't exist, display page not found error
+            $error = 'page-not-found';
+            $page = 'error';
+        }
+    } else {
+        // If no page has been specified, then just display the home page
+        $page = 'home';
+    }
+
+    return $page;
+}
+
 function formatPageTitle($pageTitle) {
     // Check if there is an underscore in the action name
     $strPos = strrpos($pageTitle, '_');

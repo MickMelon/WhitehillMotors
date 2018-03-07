@@ -239,6 +239,4 @@ class Car {
 
         return $model['ManufacturerID'];
     }
-
-    // update
 }

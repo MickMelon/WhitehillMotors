@@ -79,17 +79,11 @@ class Employee {
     }
 
     public static function isLoggedIn() {
-        if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
-            return true;
-        }
-        return false;
+        return (isset($_SESSION['login']) && $_SESSION['login'] != '');
     }
 
-    // Should be in the controller
+    // Should be in the controller, should it?
     public static function isManager() {
-        if (Employee::isLoggedIn() && $_SESSION['login'] == 'manager') {
-            return true;
-        }
-        return false;
+        return (Employee::isLoggedIn() && $_SESSION['login'] == 'manager');
     }
 }

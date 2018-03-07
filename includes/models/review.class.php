@@ -6,14 +6,16 @@ class Review {
     public $rating;
     public $employeeId;
     public $approved;
+    public $dateReviewed;
 
-    public function __construct($reviewId, $customerName, $reviewText, $rating, $employeeId, $approved) {
+    public function __construct($reviewId, $customerName, $reviewText, $rating, $employeeId, $approved, $dateReviewed) {
         $this->reviewId = $reviewId;
         $this->customerName = $customerName;
         $this->reviewText = $reviewText;
         $this->rating = $rating;
         $this->employeeId = $employeeId;
         $this->approved = $approved;
+        $this->dateReviewed = $dateReviewed;
     }
 
     public static function all() {
@@ -29,7 +31,8 @@ class Review {
                 $review['ReviewText'],
                 $review['Rating'],
                 $review['EmployeeID'],
-                $review['Approved']);
+                $review['Approved'],
+                $review['DateReviewed']);
         }
         return $list;
     }
@@ -41,7 +44,7 @@ class Review {
         $query->bindParam(':reviewId', $reviewId, PDO::PARAM_INT);
         $query->execute();
 
-        $car = $query->fetch();
+        $review = $query->fetch();
 
         return new Review(
             $review['ReviewID'],
@@ -49,13 +52,14 @@ class Review {
             $review['ReviewText'],
             $review['Rating'],
             $review['EmployeeID'],
-            $review['Approved']);
+            $review['Approved'],
+            $review['DateReviewed']);
     }
 
     public static function setApproved($reviewId, $approved) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('UPDATE Review SET
+        $query = $db->prepare('UPDATE review SET
             Approved = :approved
             WHERE ReviewID = :reviewId');
 
@@ -65,7 +69,48 @@ class Review {
         $query->execute();
     }
 
+    public static function getAllApproved() {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('SELECT * FROM review WHERE Approved = 1');
+        $query->execute();
+
+        foreach ($query->fetchAll() as $review) {
+            $list[] = new Review(
+                $review['ReviewID'],
+                $review['CustomerName'],
+                $review['ReviewText'],
+                $review['Rating'],
+                $review['EmployeeID'],
+                $review['Approved'],
+                $review['DateReviewed']);
+        }
+        return $list;
+    }
+
+    public static function getAllNotApproved() {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('SELECT * FROM review WHERE Approved = 0');
+        $query->execute();
+
+        foreach ($query->fetchAll() as $review) {
+            $list[] = new Review(
+                $review['ReviewID'],
+                $review['CustomerName'],
+                $review['ReviewText'],
+                $review['Rating'],
+                $review['EmployeeID'],
+                $review['Approved'],
+                $review['DateReviewed']);
+        }
+        return $list;
+    }
+
     public static function insert($reviewId, $customerName, $reviewText, $rating, $employeeId, $reviewed) {
+        $date = new DateTime();
+        $date->format('YYYY-MM-DD');
+
         $db = Db::getInstance();
 
         $query = $db->prepare('INSERT INTO review (
@@ -74,21 +119,24 @@ class Review {
                 ReviewText,
                 Rating,
                 EmployeeID,
-                Approved)
+                Approved,
+                DateReviewed)
             VALUES (
                 :reviewId,
                 :customerName,
                 :reviewText,
                 :rating,
                 :employeeId,
-                :approved)');
+                :approved,
+                :dateReviewed)');
 
         $query->bindParam(':reviewId', $reviewId, PDO::PARAM_INT);
         $query->bindParam(':customerName', $customerName, PDO::PARAM_STR);
         $query->bindParam(':reviewText', $reviewText, PDO::PARAM_STR);
         $query->bindParam(':rating', $rating, PDO::PARAM_INT);
         $query->bindParam(':employeeId', $employeeId, PDO::PARAM_INT);
-        $query->bindParam(':approved', approved, PDO::PARAM_INT);
+        $query->bindParam(':approved', $approved, PDO::PARAM_INT);
+        $query->bindParam(':dateReviewed', $date, PDO::PARAM_STR);
 
         $query->execute();
     }
@@ -96,7 +144,7 @@ class Review {
     public static function update($reviewId, $customerName, $reviewText, $rating, $employeeId, $approved) {
         $db = Db::getInstance();
 
-        $query = $db->prepare('UPDATE vehicle SET
+        $query = $db->prepare('UPDATE review SET
                 CustomerName = :customerName,
                 ReviewText = :reviewText,
                 Rating = :rating,

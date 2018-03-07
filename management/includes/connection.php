@@ -16,8 +16,8 @@ class Db {
         if (!isset(self::$instance)) {
             $host = 'localhost';
             $dbname = 'whitehill';
-            $user = 'root';
-            $pass = '';
+            $user = 'michael';
+            $pass = 'P@ssw0rd';
 
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 

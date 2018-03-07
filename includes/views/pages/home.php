@@ -75,6 +75,42 @@
                     </div>
             </section>
 
+<hr />
+            <section class="cards">
+                    <div class="card">
+                        <div class="card-image"><img src="img/newcars.png" /></div>
+                        <div class="card-text">
+                            <h1>New Cars</h1>
+                            <p>Have a look at our range of brand new cars!</p>
+                        </div>
+                        <a href="cars" class="button">New Cars</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-image"><img src="img/usedcar.jpg" /></div>
+                        <div class="card-text">
+                            <h1>Used Cars</h1>
+                            <p>Check out all our top quality used cars we have on sale!</p>
+                        </div>
+                        <a href="cars" class="button">Used Cars</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-image"><img src="img/mechanic.png" /></div>
+                        <div class="card-text">
+                            <h1>Services</h1>
+                            <p>Find out all the services that we offer!</p>
+                        </div>
+                        <a href="services" class="button">Services</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-image"><img src="img/contact.jpg" /></div>
+                        <div class="card-text">
+                            <h1>Get In Touch</h1>
+                            <p>Learn about the many ways to get in contact with us!</p>
+                        </div>
+                        <a href="contact" class="button">Get In Touch</a>
+                    </div>
+            </section>
+
             <section id="map" style="height: 400px;"></section>
 
             <section class="small">20 Market Place, Forfar, DD8 3BX</section>
