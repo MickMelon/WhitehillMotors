@@ -9,8 +9,15 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         header("Location: index.php?page=error");
     }
 
-    if (isset($_GET['action']) && $_GET['action'] == 'delete') {
-        Car::delete($vehicleId);
+    if (isset($_GET['action'])) {
+        echo "yes";
+        if ($_GET['action'] == 'delete') {
+            Car::delete($vehicleId);
+        } else if ($_GET['action'] == 'markassold') {
+            echo "yes2";
+            Car::markAsSold($vehicleId);
+        }
+
         header("Location: index.php?page=home");
     }
 

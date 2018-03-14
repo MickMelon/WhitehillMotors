@@ -12,9 +12,10 @@ class Car {
     public $features;
     public $description;
     public $price;
+    public $sold;
 
     public function __construct($vehicleId, $model, $manufacturer, $engine, $year, $registration,
-    $mileage, $fuelType, $condition, $features, $description, $price) {
+    $mileage, $fuelType, $condition, $features, $description, $price, $sold) {
         $this->vehicleId = $vehicleId;
         $this->model = $model;
         $this->manufacturer = $manufacturer;
@@ -27,6 +28,7 @@ class Car {
         $this->features = $features;
         $this->description = $description;
         $this->price = $price;
+        $this->sold = $sold;
     }
 
     public static function all() {
@@ -48,7 +50,8 @@ class Car {
                 $car['Condition'],
                 $car['Features'],
                 $car['Description'],
-                $car['Price']);
+                $car['Price'],
+                $car['Sold']);
         }
         return $list;
     }
@@ -75,7 +78,8 @@ class Car {
             $car['Condition'],
             $car['Features'],
             $car['Description'],
-            $car['Price']);
+            $car['Price'],
+            $car['Sold']);
     }
 
     public static function findByReg($reg) {
@@ -100,7 +104,8 @@ class Car {
             $car['Condition'],
             $car['Features'],
             $car['Description'],
-            $car['Price']);
+            $car['Price'],
+            $car['Sold']);
     }
 
     public static function insert($modelId, $engine, $year, $registration,
@@ -145,7 +150,7 @@ class Car {
     }
 
     public static function update($vehicleId, $engine, $year, $registration,
-    $mileage, $fuelType, $features, $description, $price) {
+    $mileage, $fuelType, $features, $description, $price, $sold) {
         $db = Db::getInstance();
 
         $query = $db->prepare('UPDATE vehicle SET
@@ -156,7 +161,8 @@ class Car {
                 FuelType = :fuelType,
                 Features = :features,
                 Description = :description,
-                Price = :price
+                Price = :price,
+                Sold = :sold
                 WHERE VehicleID = :vehicleId');
 
         $query->bindParam(':engine', $engine, PDO::PARAM_STR);
@@ -168,6 +174,7 @@ class Car {
         $query->bindParam(':description', $description, PDO::PARAM_STR);
         $query->bindParam(':price', $price, PDO::PARAM_STR);
         $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
+        $query->bindParam(':sold', $sold, PDO::PARAM_INT);
 
         $query->execute();
     }
@@ -238,5 +245,13 @@ class Car {
         $model = $query->fetch();
 
         return $model['ManufacturerID'];
+    }
+
+    public static function markAsSold($vehicleId) {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('UPDATE vehicle SET Sold = 1 WHERE VehicleID = :vehicleId');
+        $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
+        $query->execute();
     }
 }
