@@ -1,3 +1,15 @@
+<?php
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $rating = $_POST['rating'];
+    $message = $_POST['message'];
+
+    Review::insert($name, $message, $rating, 1, 0);
+    header("Location: /whitehillmotors/reviews");
+}
+
+?>
+
 <main>
     <section>
         <div class="text">
@@ -15,7 +27,7 @@
               <label for="message">Message:</label>
               <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
               <br /><br />
-              <input class="button" type="submit" value="Submit">
+              <input class="button" type="submit" name="submit" value="Submit">
 
             </form>
         </div>
@@ -24,21 +36,20 @@
 
 <script>
     function submitForm() {
-        name = document.forms["form"]["name"].value;
-        email = document.forms["form"]["email"].value;
-        subject = document.forms["form"]["subject"].value;
+        let name = document.forms["form"]["name"].value;
+        let rating = document.forms["form"]["rating"].value;
+        let message = document.forms["form"]["message"].value;
 
-        if (name == '' || subject == '' || email == '') {
+        if (name == '' || rating == '' || message == '') {
             alert("Please fill out all the fields.");
             return false;
         }
 
-        // Now to check the email address to make sure it is valid
-        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-            alert("You have entered an invalid email address! Example: jane-doe@gmail.com");
+        if (rating < 0 || rating > 5) {
+            alert("Rating must be a number between 0 and 5.");
             return false;
         }
 
-        alert("Your message has been sent! We will get back to you as soon as possible.");
+        alert("Your review has been submitted. Our staff team will approve your review shortly.");
     }
 </script>

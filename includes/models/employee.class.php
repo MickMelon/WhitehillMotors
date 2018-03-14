@@ -1,9 +1,11 @@
 <?php
 class Employee {
+    public $employeeId;
     public $username;
     public $password;
 
-    public function __construct($username, $password) {
+    public function __construct($employeeId, $username, $password) {
+        $this->employeeId = $employeeId;
         $this->username = $username;
         $this->password = $password;
     }
@@ -17,7 +19,7 @@ class Employee {
 
         $employee = $query->fetch();
 
-        return new Employee($employee['Username'], $employee['Password']);
+        return new Employee($employee['EmployeeID'], $employee['Username'], $employee['Password']);
     }
 
     public static function insert($username, $password) {
@@ -69,6 +71,7 @@ class Employee {
         // Stuff that needs to be set when the employee logs in
         session_start();
         $_SESSION['login'] = $employee->username;
+        $_SESSION['employeeId'] = $employee->employeeId;
         setcookie('date', date("F d, Y - H:i:s"), time() + (86400 * 30), "/"); // 1 day
     }
 

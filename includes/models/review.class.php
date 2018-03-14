@@ -56,14 +56,16 @@ class Review {
             $review['DateReviewed']);
     }
 
-    public static function setApproved($reviewId, $approved) {
+    public static function setApproved($reviewId, $approved, $employeeId) {
         $db = Db::getInstance();
 
         $query = $db->prepare('UPDATE review SET
-            Approved = :approved
+            Approved = :approved,
+            EmployeeID = :employeeId
             WHERE ReviewID = :reviewId');
 
         $query->bindParam(':approved', $approved, PDO::PARAM_INT);
+        $query->bindParam('employeeId', $employeeId, PDO::PARAM_INT);
         $query->bindParam(':reviewId', $reviewId, PDO::PARAM_INT);
 
         $query->execute();
@@ -107,14 +109,12 @@ class Review {
         return $list;
     }
 
-    public static function insert($reviewId, $customerName, $reviewText, $rating, $employeeId, $reviewed) {
-        $date = new DateTime();
-        $date->format('YYYY-MM-DD');
+    public static function insert($customerName, $reviewText, $rating, $employeeId, $approved) {
+        $date = date('Y-m-d');
 
         $db = Db::getInstance();
 
         $query = $db->prepare('INSERT INTO review (
-                ReviewID,
                 CustomerName,
                 ReviewText,
                 Rating,
@@ -122,7 +122,6 @@ class Review {
                 Approved,
                 DateReviewed)
             VALUES (
-                :reviewId,
                 :customerName,
                 :reviewText,
                 :rating,
@@ -130,7 +129,6 @@ class Review {
                 :approved,
                 :dateReviewed)');
 
-        $query->bindParam(':reviewId', $reviewId, PDO::PARAM_INT);
         $query->bindParam(':customerName', $customerName, PDO::PARAM_STR);
         $query->bindParam(':reviewText', $reviewText, PDO::PARAM_STR);
         $query->bindParam(':rating', $rating, PDO::PARAM_INT);
