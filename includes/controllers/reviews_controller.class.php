@@ -1,7 +1,7 @@
 <?php
     class ReviewsController {
         public function index() {
-            $list = Review::all();
+            $list = Review::getAllApproved();
             require_once('includes/views/reviews/index.php');
         }
 

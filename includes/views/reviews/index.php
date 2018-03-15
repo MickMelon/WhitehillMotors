@@ -1,5 +1,6 @@
 <main>
     <section>
+        <a href="/whitehillmotors/reviews/add">Add Review</a>
         <div class="text">
             <?php foreach ($list as $review) { ?>
                 <h1><?= $review->customerName; ?></h1>

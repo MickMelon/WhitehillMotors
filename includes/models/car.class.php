@@ -1,3 +1,7 @@
+test: normal traffic (200 peeps) might be more at app time
+normal, extreme, exceptional. Test everything here.
+user and component tests. just do good tests not loads of shit ones
+
 <?php
 class Car {
     public $vehicleId;
