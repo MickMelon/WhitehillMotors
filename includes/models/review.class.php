@@ -109,6 +109,18 @@ class Review {
         return $list;
     }
 
+    public static function getAverageRating() {
+        $list = Review::all();
+        $sum = 0;
+        $total = sizeof($list);
+
+        foreach ($list as $review) {
+            $sum += $review->rating;
+        }
+
+        return $sum / $total;
+    }
+
     public static function insert($customerName, $reviewText, $rating, $employeeId, $approved) {
         $date = date('Y-m-d');
 

@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <base href="http://localhost/whitehillmotors/"
+        <base href="http://localhost:8080/whitehillmotors/"
 
         <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="css/main.css" />

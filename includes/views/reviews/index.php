@@ -1,17 +1,38 @@
 <main>
-    <section>
-        <a href="/whitehillmotors/reviews/add">Add Review</a>
-        <div class="text">
-            <?php foreach ($list as $review) { ?>
-                <h1><?= $review->customerName; ?></h1>
-                <p style="font-weight: bold;"><?= $review->dateReviewed; ?> - <?=$review->rating; ?>/5</p>
-                <p><?= $review->reviewText;?></p>
-            <?php } ?>
+    <section class="reviews">
+        <div class="reviews-description">
+
+            <div class="review-rating-average">
+                <p>Average Rating:</p>
+                <span class="fa fa-star <?php echo $average >= 1 ? 'checked' : ''?>"></span>
+                <span class="fa fa-star <?php echo $average >= 2 ? 'checked' : ''?>"></span>
+                <span class="fa fa-star <?php echo $average >= 3 ? 'checked' : ''?>"></span>
+                <span class="fa fa-star <?php echo $average >= 4 ? 'checked' : ''?>"></span>
+                <span class="fa fa-star <?php echo $average >= 5 ? 'checked' : ''?>"></span>
+            </div>
+
+            <p>Here is a list of reviews from our lovely customers. If you would like to share your experience with Whitehill Motors, use the link below to add a review!</p>
+            <p><a href="/whitehillmotors/reviews/add">Add Review</a></p>
         </div>
 
-        <div class="image">
-
-            <img src="http://www.blueworx.com/wp-content/uploads/2017/11/happy-customer-png-5.jpg" style="height: 250px;"/>
-        </div>
+        <?php foreach ($list as $review) { ?>
+            <div class="review">
+                <div class="review-title">
+                    <p><span class="review-name"><?= $review->customerName; ?></span> <span class="review-date"><?= $review->dateReviewed; ?></span></p>
+                    <p>
+                        <span class="review-rating">
+                            <span class="fa fa-star <?php echo $review->rating >= 1 ? 'checked' : ''?>"></span>
+                            <span class="fa fa-star <?php echo $review->rating >= 2 ? 'checked' : ''?>"></span>
+                            <span class="fa fa-star <?php echo $review->rating >= 3 ? 'checked' : ''?>"></span>
+                            <span class="fa fa-star <?php echo $review->rating >= 4 ? 'checked' : ''?>"></span>
+                            <span class="fa fa-star <?php echo $review->rating >= 5 ? 'checked' : ''?>"></span>
+                        </span>
+                    </p>
+                </div>
+                <div class="review-content">
+                    <p><?= $review->reviewText; ?></p>
+                </div>
+            </div>
+        <?php } ?>
     </section>
 </main>

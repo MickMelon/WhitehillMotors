@@ -491,7 +491,72 @@ section.error {
     margin-bottom: 0.5px;
 }
 
+.reviews {
+    display: flex;
+    flex-direction: column;
+}
 
+.review-rating-average {
+    padding-bottom: 1em;
+}
+
+.review-rating-average span {
+    font-size: 2em;
+}
+
+.review-rating-average p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.reviews-description {
+    width: 60%;
+    text-align: center;
+    padding-bottom: 0.5em;
+}
+
+.reviews-description p {
+    padding-bottom: 0.5em;
+}
+
+.reviews-description a {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #f1f1f1;
+    padding: 2em;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    width: 60%;
+    margin-bottom: 1em;
+}
+
+.review p {
+    padding-bottom: 0.5em;
+}
+
+.review-name {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.review-date {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.review-content {
+    font-size: 0.9em;
+}
+
+.checked {
+    color: orange;
+}
 
 /*
 ========================================
