@@ -528,7 +528,7 @@ section.error {
     display: flex;
     flex-direction: column;
 
-    background-color: #f1f1f1;
+    background-color: #f3f3f3;
     padding: 2em;
     border: 1px solid #e1e1e1;
     border-radius: 5px;
@@ -885,5 +885,9 @@ footer p {
 
     #socialmedia {
         text-align: left;
+    }
+
+    .reviews-description, .review {
+        width: 90%;
     }
 }
