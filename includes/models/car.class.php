@@ -60,6 +60,43 @@ class Car {
         return $list;
     }
 
+    // The parameters are passed by reference so that the calling method can 
+    // use the modified values
+    public static function allPage(&$page, &$total, &$startRow, $showMax) {
+        $db = Db::getInstance();
+        $total = Car::count();
+
+        $startRow = $page * $showMax;
+
+        if ($startRow > $total) {
+            $startRow = 0;
+            $page = 0;
+        }
+
+        $query = $db->prepare('SELECT * FROM vehicle LIMIT :startRow, :showMax');
+        $query->bindParam(':startRow', $startRow, PDO::PARAM_INT);
+        $query->bindParam(':showMax', $showMax, PDO::PARAM_INT);
+        $query->execute();
+
+        foreach ($query->fetchAll() as $car) {
+            $list[] = new Car(
+                $car['VehicleID'],
+                Car::getModelName($car['ModelID']),
+                Car::getManufacturerName(Car::getManufacturerId($car['ModelID'])),
+                $car['Engine'],
+                $car['Year'],
+                $car['Registration'],
+                $car['Mileage'],
+                $car['FuelType'],
+                $car['Condition'],
+                $car['Features'],
+                $car['Description'],
+                $car['Price'],
+                $car['Sold']);
+        }
+        return $list;
+    }
+
     public static function findByVehicleId($vehicleId) {
         $db = Db::getInstance();
 
@@ -257,5 +294,14 @@ class Car {
         $query = $db->prepare('UPDATE vehicle SET Sold = 1 WHERE VehicleID = :vehicleId');
         $query->bindParam(':vehicleId', $vehicleId, PDO::PARAM_INT);
         $query->execute();
+    }
+
+    public static function count() {
+        $db = Db::getInstance();
+
+        $query = $db->prepare('SELECT * FROM vehicle');
+        $query->execute();
+
+        return $query->rowCount();
     }
 }

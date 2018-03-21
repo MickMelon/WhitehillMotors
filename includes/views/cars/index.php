@@ -40,8 +40,19 @@
 <?php } ?>
 
                 <div class="cars-navigation">
-                    <p>Page 1 of 1</p>
-                    <p><a href="#"><< Previous</a> - <a href="#">Next >></a></p>
+                    <p><?= $prevNextString; ?></p>
+
+                    <p>
+                        <?php
+                        // Create a back link if the current page is greater than 0
+                        if ($page > 0) { ?>
+                            <a href="cars/page/<?= $page - 1 ?>"> &lt; Prev</a>
+                        <?php }
+                        // Create a forward link if more records exist
+                        if ($startRow + $showMax < $total) { ?>
+                            <a href="cars/page/<?= $page + 1 ?>"> Next &gt; </a>
+                        <?php } ?>
+                    </p>
                 </div>
             </section>
 

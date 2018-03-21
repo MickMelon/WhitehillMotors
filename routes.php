@@ -1,7 +1,7 @@
 <?php
 // List of controllers and their actions
 $controllers = array('pages' => ['home', 'error', 'contact', 'about', 'services'],
-                     'cars' => ['index', 'single'],
+                     'cars' => ['index', 'single', 'page'],
                      'reviews' => ['index', 'single', 'add']);
 
 // Check that the requested controller anda ction are allowed
