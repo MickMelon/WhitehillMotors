@@ -32,7 +32,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         <option value="approved" <?php echo ($sort == 'approved') ? 'selected' : ''?>>Approved</option>
     </select>
     <table>
-        <tr><th>#</th><th>Name</th><th>Text</th><th>Rating</th><th>Date</th><th>Approved</th><th>By</th><th>Approve</th><th>Delete</th></tr>
+        <tr><th>#</th><th>Name</th><th>Text</th><th>Rating</th><th>Date</th><th>Approved</th><th>By</th><th>Aprv</th><th>Del</th></tr>
         <?php for ($i = 0; $i < sizeof($list); $i++) { ?>
             <tr><td><?= ($i+1); ?></td>
                 <td><?= $list[$i]->customerName; ?></td>
@@ -41,7 +41,12 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 <td><?= $list[$i]->dateReviewed; ?></td>
                 <td><?= ($list[$i]->approved == 0) ? 'No' : 'Yes' ?></td>
                 <td><?= $list[$i]->employeeId; ?></td>
-                <td><a href="index.php?page=reviews&action=approve&id=<?= $list[$i]->reviewId; ?>">Approve</a></td>
+                <td>
+                    <?php if ($list[$i]->approved == 0) { ?>
+                    <a href="index.php?page=reviews&action=approve&id=<?= $list[$i]->reviewId; ?>">Approve</a>
+                    <?php } ?>
+
+                </td>
                 <td><a href="index.php?page=reviews&action=delete&id=<?= $list[$i]->reviewId; ?>" onclick="return confirmDelete()">Delete</a></td>
             </tr>
         <?php } ?>

@@ -19,6 +19,8 @@ class Review {
     }
 
     public static function all() {
+        $list = [];
+
         $db = Db::getInstance();
 
         $query = $db->prepare('SELECT * FROM review');
@@ -72,6 +74,8 @@ class Review {
     }
 
     public static function getAllApproved() {
+        $list = [];
+
         $db = Db::getInstance();
 
         $query = $db->prepare('SELECT * FROM review WHERE Approved = 1');
@@ -91,6 +95,8 @@ class Review {
     }
 
     public static function getAllNotApproved() {
+        $list = [];
+        
         $db = Db::getInstance();
 
         $query = $db->prepare('SELECT * FROM review WHERE Approved = 0');
