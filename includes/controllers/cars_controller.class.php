@@ -8,19 +8,48 @@
         }
 
         public function page() {
+            if (isset($_POST['modelId'])) echo "Fuck you dick head<br/>";
+            else echo "you are a fucking arse hoel...<br/>";
+
+            $manufacturers = Car::getAllManufacturers();
+            $models = Car::getAllModelsForManufacturer($manufacturers[0]['ManufacturerID']);
+
+            if (isset($_POST['manufacturer'])) {
+                echo "wut";
+                $models = Car::getAllModelsForManufacturer($_POST['manufacturer']);
+            }
+
             // Initialize all variables to be used
             $page = 0;
             $total = 0;
             $startRow = 0;
             $showMax = 5;
 
-            if (isset($_GET['page']) && !empty($_GET['page'])) {
-                $page = $_GET['page'];
+            if (isset($_POST['page']) && !empty($_POST['page'])) {
+                $page = $_POST['page'];
             }
+
+            // We need to get all the filter results shit here...
+            echo 'MODELID = ' . $_POST['modelId'] . '<br />';
+
+            $modelId = isset($_POST['modelId']) && $_POST['modelId'] != '' ? $_POST['modelId'] : -1;
+            $maxAge = isset($_POST['maxAge']) && $_POST['maxAge'] != '' ? $_POST['maxAge'] : 0;
+
+            $minMileage = isset($_POST['minMileage']) && $_POST['minMileage'] != '' ? $_POST['minMileage'] : 0;
+            $maxMileage = isset($_POST['maxMileage']) && $_POST['maxMileage'] != '' ? $_POST['maxMileage'] : 0;
+
+            $fuelType = isset($_POST['fuelType']) && $_POST['fuelType'] != '' ? $_POST['fuelType'] : 'any';
+            $condition = isset($_POST['condition']) && $_POST['condition'] != '' ? $_POST['condition'] : 'any';
+
+            $minPrice = isset($_POST['minPrice']) && $_POST['minPrice'] != '' ? $_POST['minPrice'] : 0;
+            $maxPrice = isset($_POST['maxPrice']) && $_POST['maxPrice'] != '' ? $_POST['maxPrice'] : 0;
+
+            $list = Car::allFilter($page, $total, $startRow, $showMax, $modelId, $maxAge, $minMileage, $maxMileage,
+             $fuelType, $condition, $minPrice, $maxPrice);
 
             // These parameter variables are passed by reference so that the
             // allPage method modifies the value so we can use them after
-            $list = Car::allPage($page, $total, $startRow, $showMax);
+            //    $list = Car::allPage($page, $total, $startRow, $showMax);
 
             // Build previous/next string to be displayed on the page
             $prevNextString = CarsController::buildPrevNextString($startRow, $showMax, $total);

@@ -60,7 +60,7 @@ class Car {
         return $list;
     }
 
-    // The parameters are passed by reference so that the calling method can 
+    // The parameters are passed by reference so that the calling method can
     // use the modified values
     public static function allPage(&$page, &$total, &$startRow, $showMax) {
         $db = Db::getInstance();
@@ -96,6 +96,101 @@ class Car {
         }
         return $list;
     }
+
+    public static function allFilter(&$page, &$total, &$startRow, $showMax, $modelId, $minAge, $minMileage, $maxMileage,
+     $fuelType, $condition, $minPrice, $maxPrice) {
+         $db = Db::getInstance();
+         // Check if the max filter variables are set to 0. If they are set them to
+         // an infinite number
+         if ($maxMileage <= 0) $maxMileage = 999999;
+         if ($maxPrice <= 0) $maxPrice = 999999;
+
+         // Initialize sql query string
+         $sql = 'SELECT * FROM vehicle WHERE ';
+         $params = [];
+
+         echo 'model' . $modelId;
+
+         // Check if 'any' model was chosen
+         if ($modelId != -1) {
+             $sql .= 'ModelId = :modelId';
+             $params[] = 'modelId';
+         }
+         if ($fuelType != 'any') {
+             if (sizeof($params) > 0) {
+                 $sql .= ' AND ';
+             }
+
+             $sql .= 'FuelType = :fuelType';
+             $params[] = 'fuelType';
+         }
+         if ($condition != 'any') {
+             if (sizeof($params) > 0) {
+                 $sql .= ' AND ';
+             }
+
+             $sql .= 'Condition = :condition';
+             $params[] = 'condition';
+         }
+
+         // Add the select that will always be there
+         if (sizeof($params) > 0) {
+             $sql .= ' AND ';
+         }
+
+         $sql .= '(CURRENT_DATE() - Year) > :minAge AND ';
+         $sql .= 'Mileage BETWEEN 100000 AND 999999 AND ';
+         $sql .= 'Price BETWEEN :minPrice AND :maxPrice ';
+         $sql .= 'LIMIT :startRow, :showMax';
+
+         echo 'SQL: ' . $sql;
+
+         $query = $db->prepare($sql);
+         foreach ($params as $param) {
+             $query->bindParam(':' . $param, ${ $param }, PDO::PARAM_STR); // dont think thisll work lol
+         }
+
+         // Now add the parameters that will always be there
+         $query->bindParam(':minAge', $minAge, PDO::PARAM_INT);
+         //$query->bindParam(':minMileage', $minMileage, PDO::PARAM_INT);
+         //$query->bindParam(':maxMileage', $maxMileage, PDO::PARAM_INT);
+         $query->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
+         $query->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+         $query->bindParam(':startRow', $startRow, PDO::PARAM_INT);
+         $query->bindParam(':showMax', $showMax, PDO::PARAM_INT);
+         // Next execute this shit show
+         $query->execute();
+
+         // now return whatever monstrosity result we get.... if any
+         foreach ($query->fetchAll() as $car) {
+             $list[] = new Car(
+                 $car['VehicleID'],
+                 Car::getModelName($car['ModelID']),
+                 Car::getManufacturerName(Car::getManufacturerId($car['ModelID'])),
+                 $car['Engine'],
+                 $car['Year'],
+                 $car['Registration'],
+                 $car['Mileage'],
+                 $car['FuelType'],
+                 $car['Condition'],
+                 $car['Features'],
+                 $car['Description'],
+                 $car['Price'],
+                 $car['Sold']);
+         }
+
+         // do all the display page shit here
+         $total = sizeof($list);
+
+         $startRow = $page * $showMax;
+
+         if ($startRow > $total) {
+             $startRow = 0;
+             $page = 0;
+         }
+
+         return $list;
+     }
 
     public static function findByVehicleId($vehicleId) {
         $db = Db::getInstance();

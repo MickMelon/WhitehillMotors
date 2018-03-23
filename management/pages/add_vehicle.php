@@ -129,6 +129,5 @@ if (isset($_POST['submit'])) {
             alert("Price must be a number!");
             return false;
         }
-
     }
 </script>

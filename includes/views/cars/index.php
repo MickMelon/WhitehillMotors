@@ -1,5 +1,59 @@
+<?php
+echo 'Model ' . $_POST['modelId'];
+echo 'Manu ' . $_POST['manufacturerId'];
+ ?>
+
         <main>
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
+
+            <section class="filter-cars">
+                <form id="manufacturer-model" name="manufacturer-model" method="post" action="">
+                    Manufacturer:
+                    <select id="manufacturer" onchange="submitForm('manufacturer-model')" name="manufacturer" form="manufacturer-model">
+                        <option value="any">Any</option>
+                        <?php foreach ($manufacturers as $manufacturer) { ?>
+                            <option value="<?= $manufacturer['ManufacturerID']; ?>" <?php if (isset($_POST['manufacturer']) && $manufacturer['ManufacturerID'] == $_POST['manufacturer']) echo ' selected'?>>
+                                <?= $manufacturer['Name']; ?>
+
+                            </option>
+                        <?php } ?>
+
+                    </select>
+
+                    Model:
+                    <select onchange="setModel()" name="model" id="model" form="manufacturer-model">
+                        <option value="any">Any</option>
+                        <?php foreach ($models as $model) { ?>
+                            <option value="<?= $model['ModelID']; ?>"><?= $model['Name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </form>
+                <form id="filter" name="filter" method="post" action="" enctype="multipart/form-data" id="filterForm">
+                    <input type="text" name="manufacturerId" id="manufacturerId" style="display: none;" value="any" />
+                    <input type="text" name="modelId" id="modelId" style="display: none;" value="any" />
+                    Age: <input type="number" name="age" /><br />
+                    Mileage: <input type="number" name="minMileage" /> to <input type="number" name="maxMileage" /><br />
+                    FuelType:
+                    <select name="fuelType">
+                        <option value="any">Any</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="electric">Electric</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="lpg">LPG</option>
+                    </select>
+                    <br />
+                    Condition:
+                    <select name="condition">
+                        <option value="any">Any</option>
+                        <option value="new">New</option>
+                        <option value="used">Used</option>
+                    </select>
+                    <br />
+                    Price: <input type="number" name="minPrice" /> to <input type="number" name="maxPrice" /><br />
+                    <input type="submit" name="submit" value="Filter" form="filter"/>
+                </form>
+            </section>
 
             <section class="cars">
 
@@ -58,3 +112,27 @@
 
 
         </main>
+
+<script>
+    function submitForm(formId) {
+        setManufacturer();
+        var form = document.getElementById(formId);
+        if (form) {
+            form.submit();
+        }
+    }
+
+    function setModel() {
+        var model = document.getElementById('model');
+        var modelId = model.options[model.selectedIndex].value;
+        document.getElementById('modelId').value = modelId;
+
+    }
+
+    function setManufacturer() {
+        var manufacturer = document.getElementById('manufacturer');
+        var manufacturerId = manufacturer.options[manufacturer.selectedIndex].value;
+        document.getElementById('manufacturerId').value = manufacturerId;
+        alert("TEST");
+    }
+</script>
