@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
 
         Price: <input type="text" name="price" required />
 
-        Image: <input type="file" name="image" id="image" />
+        Image: <input type="file" name="imageUpload" id="imageUpload" multiple/>
         <input type="submit" name="submit" value="Add Vehicle" />
     </form>
 </div>
@@ -111,6 +111,7 @@ if (isset($_POST['submit'])) {
         var features = document.forms["form"]["features"].value;
         var description = document.forms["form"]["description"].value;
         var price = document.forms["form"]["price"].value;
+        var imageUpload = document.getElementById("imageUpload").files;
 
         // is not a number
         if (isNaN(engine)) {
@@ -127,6 +128,12 @@ if (isset($_POST['submit'])) {
         }
         if (isNaN(price)) {
             alert("Price must be a number!");
+            return false;
+        }
+
+        // Check that there are no more than 5 images uploaded
+        if (imageUpload.length > 5) {
+            alert("You cannot upload more than 5 images!");
             return false;
         }
     }

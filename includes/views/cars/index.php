@@ -1,11 +1,11 @@
 <?php
-echo 'Model ' . $_POST['modelId'];
-echo 'Manu ' . $_POST['manufacturerId'];
+//echo 'Model ' . $_POST['modelId'];
+//echo 'Manu ' . $_POST['manufacturerId'];
  ?>
 
         <main>
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
-
+<!--
             <section class="filter-cars">
                 <form id="manufacturer-model" name="manufacturer-model" method="post" action="">
                     Manufacturer:
@@ -53,7 +53,7 @@ echo 'Manu ' . $_POST['manufacturerId'];
                     Price: <input type="number" name="minPrice" /> to <input type="number" name="maxPrice" /><br />
                     <input type="submit" name="submit" value="Filter" form="filter"/>
                 </form>
-            </section>
+            </section>-->
 
             <section class="cars">
 

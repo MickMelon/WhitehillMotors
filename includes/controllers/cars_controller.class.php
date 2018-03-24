@@ -8,6 +8,29 @@
         }
 
         public function page() {
+            // Initialize all variables to be used
+            $page = 0;
+            $total = 0;
+            $startRow = 0;
+            $showMax = 5;
+
+            // Check if the page parameter has been set. If it has, set $page
+            // to be the value of the parameter. Otherwise page will remain 0
+            if (isset($_GET['page']) && !empty($_GET['page'])) {
+                $page = $_GET['page'];
+            }
+
+            // These parameter variables are passed by reference so that the
+            // allPage method modifies the value so we can use them after
+            $list = Car::allPage($page, $total, $startRow, $showMax);
+
+            // Build previous/next string to be displayed on the page
+            $prevNextString = CarsController::buildPrevNextString($startRow, $showMax, $total);
+
+            require_once('includes/views/cars/index.php');
+        }
+
+        public function page2() {
             if (isset($_POST['modelId'])) echo "Fuck you dick head<br/>";
             else echo "you are a fucking arse hoel...<br/>";
 
