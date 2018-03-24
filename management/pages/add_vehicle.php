@@ -20,9 +20,10 @@ if (isset($_POST['submit'])) {
 
     require_once('includes/upload.php');
 
-    Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
+    //Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
 
     $success[] = 'Vehicle successfully added.';
+    echo "added";
 }
 ?>
 
@@ -84,7 +85,7 @@ if (isset($_POST['submit'])) {
 
         Price: <input type="text" name="price" required />
 
-        Image: <input type="file" name="imageUpload" id="imageUpload" multiple/>
+        Image: <input type="file" name="imageUpload[]" id="imageUpload" multiple/>
         <input type="submit" name="submit" value="Add Vehicle" />
     </form>
 </div>
