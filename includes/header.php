@@ -9,6 +9,7 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/gallery.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 
         <!-- External Fonts -->

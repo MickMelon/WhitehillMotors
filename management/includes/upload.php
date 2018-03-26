@@ -1,21 +1,16 @@
 <?php
 // Ensure that there are files being uploaded
 if (isset($_FILES['imageUpload']) && count(array_filter($_FILES['imageUpload']['name'])) > 0) {
-    echo "Total files: " . count(array_filter($_FILES['imageUpload']['name']));
     // Loop through each file
     for ($i = 0; $i < count(array_filter($_FILES['imageUpload']['name'])); $i++) {
         // Initialize errors array
         $errors = array();
 
-        // Set variables
+        // Set variables for easier access
         $file_name = $_FILES['imageUpload']['name'][$i];
         $file_size = $_FILES['imageUpload']['size'][$i];
         $file_tmp = $_FILES['imageUpload']['tmp_name'][$i];
         $file_type = $_FILES['imageUpload']['type'][$i];
-
-        echo 'Filename: ' . $file_name . '<br />';
-        echo 'Size: ' . $file_size . '<br />';
-        echo 'Type: ' . $file_type . '<br />';
 
         // Get the extension (jpg, png) from the file name
         $file_ext = strtolower(end(explode('.', $file_name)));

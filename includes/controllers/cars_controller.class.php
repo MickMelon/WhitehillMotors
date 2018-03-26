@@ -80,15 +80,19 @@
             require_once('includes/views/cars/index.php');
         }
 
-        public function single() {
+        public function single2() {
+            // Check if the id parameter has been set
             if (isset($_GET['id']) && !empty($_GET['id'])) {
+                // Get the car that has that id
                 $vehicleId = htmlentities($_GET['id']);
                 $car = Car::findByVehicleId($vehicleId);
 
+                // Check if a car was found
                 if ($car->model == '') {
-                    $errorMessage = 'Cannot find a vehicle for the specified ID.';
-                    require_once('includes/views/pages/error.php');
+                    // If no car was found display the error page
+                    call('pages', 'error');
                 } else {
+                    // Check to see if a file exists as png, jpg or jpeg
                     if (file_exists('img/cars/' . $car->registration . '.jpg')) {
                         $image = $car->registration . '.jpg';
                     } else if (file_exists('img/cars/' . $car->registration . '.png')) {
@@ -96,11 +100,60 @@
                     } else if (file_exists('img/cars/' . $car->registration . '.jpeg')) {
                         $image = $car->registration . '.jpeg';
                     } else {
+                        // If it doesn't exist display the not found image
                         $image = 'not_found.png';
                     }
+                    // Display the single car page
                     require_once('includes/views/cars/single.php');
                 }
             } else {
+                // If there was no id then display the error page
+                call('pages', 'error');
+            }
+        }
+
+        public function single() {
+            // Check if the id parameter has been set
+            if (isset($_GET['id']) && !empty($_GET['id'])) {
+                // Get the car that has that id
+                $vehicleId = htmlentities($_GET['id']);
+                $car = Car::findByVehicleId($vehicleId);
+
+                // Check if a car was found
+                if ($car->model == '') {
+                    // If no car was found display the error page
+                    call('pages', 'error');
+                } else {
+                    for ($i = 0; $i < 5; $i++) {
+                        if (file_exists('img/cars/' . $car->registration . '/' . $i . '.png')) {
+                            $imageUrls[] = 'img/cars/' . $car->registration . '/' . $i . '.png';
+                        }
+                        else if (file_exists('img/cars/' . $car->registration . '/' . $i . '.jpg')) {
+                            $imageUrls[] = 'img/cars/' . $car->registration . '/' . $i . '.jpg';
+                        }
+                        else if (file_exists('img/cars/' . $car->registration . '/' . $i . '.jpeg')) {
+                            $imageUrls[] = 'img/cars/' . $car->registration . '/' . $i . '.jpeg';
+                        }
+                        else {
+                            // Break out the loop cause if no image was found then there are't
+                            // going to be any more
+                            break;
+                        }
+                    }
+
+                    echo 'total ' . count($imageUrls);
+
+                    // Check to see if any images were found
+                    if (empty($imageUrls)) {
+                        // If there weren't any found, set the image to be not_found.png
+                        $imageUrls[] = 'not_found.png';
+                    }
+
+                    // Display the single car page
+                    require_once('includes/views/cars/single.php');
+                }
+            } else {
+                // If there was no id then display the error page
                 call('pages', 'error');
             }
         }

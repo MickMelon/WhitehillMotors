@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 
     require_once('includes/upload.php');
 
-    //Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
+    Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
 
     $success[] = 'Vehicle successfully added.';
     echo "added";

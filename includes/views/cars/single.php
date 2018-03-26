@@ -1,13 +1,52 @@
-
 <main>
     <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
 
     <section class="cars">
+
+        <?php
+        // Check to see if any images were found for this car
+        if ($imageUrls[0] == 'not_found.png') {
+        ?>
+            Image not found!
+            <img src="img/cars/not_found.png" />
+        <?php
+        } else {
+        // If there are images, we can create the gallery and add the images to it
+        ?>
+            <div class="gallery">
+                <?php
+                for ($i = 0; $i < count($imageUrls); $i++) {
+                // Loop through every image and add it in the gallery
+                ?>
+                    <div class="gallery-slides">
+                        <div class="numbertext"><?= $i+1 ?> / <?= count($imageUrls) ?></div>
+                        <div class="gallery-image" style="background-image: url(<?= $imageUrls[$i] ?>);"></div>
+                    </div>
+                <?php
+                } // end-for
+                ?>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <!-- Image text -->
+                <div class="caption-container">
+                <p id="caption"></p>
+                </div>
+            </div>
+        <?php
+        } // end-if
+        ?>
+
+
+
         <div class="single-car">
             <div class="single-car-top-row">
                 <div class="gallery">
-                    <img src="img/cars/<?= $image; ?>" />
+
                 </div>
+
                 <div class="details">
                     <div class="price">
                     </div>
@@ -42,3 +81,5 @@
 
 
 </main>
+
+<script type="text/javascript" src="js/gallery.js"></script>
