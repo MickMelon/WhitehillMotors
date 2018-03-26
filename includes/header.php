@@ -45,7 +45,7 @@
                         <a class="<?php echo ($action == 'contact') ? 'active' : '' ?>" href="contact"><i class="fa fa-address-book" aria-hidden="true"></i><br />Contact</a>
                     </li>
                     <li>
-                        <a class="<?php echo ($controller == 'reviews') ? 'active' : ''?>" href="reviews"><i class="fa fa-address-book" aria-hidden="true"></i><br />Reviews</a>
+                        <a class="<?php echo ($controller == 'reviews') ? 'active' : ''?>" href="reviews"><i class="fa fa-star" aria-hidden="true"></i><br />Reviews</a>
                     </li>
                 </ul>
             </nav>

@@ -58,12 +58,12 @@
             <section class="cars">
 
 <?php foreach ($list as $car) {
-    if (file_exists('img/cars/' . $car->registration . '.jpg')) {
-        $image = $car->registration . '.jpg';
-    } else if (file_exists('img/cars/' . $car->registration . '.png')) {
-        $image = $car->registration . '.png';
-    } else if (file_exists('img/cars/' . $car->registration . '.jpeg')) {
-        $image = $car->registration . '.jpeg';
+    if (file_exists('img/cars/' . $car->registration . '/0.jpg')) {
+        $image = $car->registration . '/0.jpg';
+    } else if (file_exists('img/cars/' . $car->registration . '/0.png')) {
+        $image = $car->registration . '/0.png';
+    } else if (file_exists('img/cars/' . $car->registration . '/0.jpeg')) {
+        $image = $car->registration . '/0.jpeg';
     } else {
         $image = 'not_found.png';
     }

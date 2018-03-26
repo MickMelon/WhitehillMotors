@@ -124,7 +124,10 @@
                     // If no car was found display the error page
                     call('pages', 'error');
                 } else {
+                    // Loop for five times as this is the maximum amount of images we will have
                     for ($i = 0; $i < 5; $i++) {
+                        // Check if the file is a png, jpg or jpeg
+                        // If it is any of them, add the image url to the imageUrls array
                         if (file_exists('img/cars/' . $car->registration . '/' . $i . '.png')) {
                             $imageUrls[] = 'img/cars/' . $car->registration . '/' . $i . '.png';
                         }
@@ -140,9 +143,6 @@
                             break;
                         }
                     }
-
-                    echo 'total ' . count($imageUrls);
-
                     // Check to see if any images were found
                     if (empty($imageUrls)) {
                         // If there weren't any found, set the image to be not_found.png
