@@ -368,6 +368,17 @@ section.cars .car .buttons {
 section.cars .car .image {
     margin-left: 0;
     flex: 2;
+    position: relative;
+    text-align: center;
+}
+
+section.cars .car .sold-text {
+    color: red;
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform: rotate(20deg);
 }
 
 section.cars .car .image img {

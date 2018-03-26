@@ -71,6 +71,7 @@
     <div class="car">
         <div class="image">
             <img src="img/cars/<?= $image; ?>" />
+            <div class="sold-text" style=""><?= $car->sold ? 'CAR SOLD' : '' ?></div>
         </div>
         <div class="details">
             <h1><?= $car->manufacturer; ?> <?= $car->model; ?></h1>
@@ -82,7 +83,6 @@
                 <tr><td><b>Fuel Type:</b></td><td><?= $car->fuelType; ?></td></tr>
                 <tr><td><b>Price:</b></td><td><b>£<?= $car->price; ?></b></td></tr>
             </table>
-            <h2><?= ($car->sold ? 'Sold' : '') ?></h2>
         </div>
 
         <div class="buttons">
