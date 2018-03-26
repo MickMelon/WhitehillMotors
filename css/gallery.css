@@ -94,3 +94,24 @@
 .demo:hover {
   opacity: 1;
 }
+
+@media screen and (max-width: 1024px) {
+    .gallery-image {
+        width: 600px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .gallery-image {
+        width: 400px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .gallery-image {
+        width: 350px;
+        height: 225px;
+    }
+}

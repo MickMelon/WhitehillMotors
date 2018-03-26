@@ -38,15 +38,8 @@
         <?php
         } // end-if
         ?>
-
-
-
         <div class="single-car">
             <div class="single-car-top-row">
-                <div class="gallery">
-
-                </div>
-
                 <div class="details">
                     <div class="price">
                     </div>

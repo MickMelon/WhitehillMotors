@@ -400,15 +400,14 @@ section.cars .single-car-top-row {
 section.cars .single-car-top-row .details {
     padding: 1em;
     width: 100%;
-    flex: 1;
 }
 
 section.cars .single-car-top-row .gallery {
-    flex: 1;
 }
 
 section.cars .single-car-top-row .details h3 {
     font-size: 2em;
+    text-align: center;
 }
 
 section.cars .single-car-top-row .gallery img {
