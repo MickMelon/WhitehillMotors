@@ -10,11 +10,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     if (isset($_GET['action'])) {
-        echo "yes";
         if ($_GET['action'] == 'delete') {
             Car::delete($vehicleId);
         } else if ($_GET['action'] == 'markassold') {
-            echo "yes2";
             Car::markAsSold($vehicleId);
         }
 

@@ -7,7 +7,7 @@
             require_once('includes/views/cars/index.php');
         }
 
-        public function page() {
+        public function page2() {
             // Initialize all variables to be used
             $page = 0;
             $total = 0;
@@ -30,10 +30,7 @@
             require_once('includes/views/cars/index.php');
         }
 
-        public function page2() {
-            if (isset($_POST['modelId'])) echo "Fuck you dick head<br/>";
-            else echo "you are a fucking arse hoel...<br/>";
-
+        public function page() {
             $manufacturers = Car::getAllManufacturers();
             $models = Car::getAllModelsForManufacturer($manufacturers[0]['ManufacturerID']);
 
@@ -48,14 +45,14 @@
             $startRow = 0;
             $showMax = 5;
 
-            if (isset($_POST['page']) && !empty($_POST['page'])) {
-                $page = $_POST['page'];
+            if (isset($_GET['page']) && !empty($_GET['page'])) {
+                $page = $_GET['page'];
             }
 
-            // We need to get all the filter results shit here...
-            echo 'MODELID = ' . $_POST['modelId'] . '<br />';
+            // We need to get all the filter results shit here..
 
-            $modelId = isset($_POST['modelId']) && $_POST['modelId'] != '' ? $_POST['modelId'] : -1;
+            $manufacturerId = isset($_POST['manufacturerId']) && $_POST['manufacturerId'] != '' ? $_POST['manufacturerId'] : 'any';
+            $modelId = isset($_POST['modelId']) && $_POST['modelId'] != '' ? $_POST['modelId'] : 'any';
             $maxAge = isset($_POST['maxAge']) && $_POST['maxAge'] != '' ? $_POST['maxAge'] : 0;
 
             $minMileage = isset($_POST['minMileage']) && $_POST['minMileage'] != '' ? $_POST['minMileage'] : 0;
@@ -67,7 +64,7 @@
             $minPrice = isset($_POST['minPrice']) && $_POST['minPrice'] != '' ? $_POST['minPrice'] : 0;
             $maxPrice = isset($_POST['maxPrice']) && $_POST['maxPrice'] != '' ? $_POST['maxPrice'] : 0;
 
-            $list = Car::allFilter($page, $total, $startRow, $showMax, $modelId, $maxAge, $minMileage, $maxMileage,
+            $list = Car::allFilter($page, $total, $startRow, $showMax, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
              $fuelType, $condition, $minPrice, $maxPrice);
 
             // These parameter variables are passed by reference so that the

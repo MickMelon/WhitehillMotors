@@ -97,67 +97,55 @@ class Car {
         return $list;
     }
 
-    public static function allFilter(&$page, &$total, &$startRow, $showMax, $modelId, $minAge, $minMileage, $maxMileage,
+    public static function allFilter(&$page, &$total, &$startRow, $showMax, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
      $fuelType, $condition, $minPrice, $maxPrice) {
          $db = Db::getInstance();
-         // Check if the max filter variables are set to 0. If they are set them to
-         // an infinite number
-         if ($maxMileage <= 0) $maxMileage = 999999;
-         if ($maxPrice <= 0) $maxPrice = 999999;
 
-         // Initialize sql query string
-         $sql = 'SELECT * FROM vehicle WHERE ';
+         $list = [];
          $params = [];
 
-         echo 'model' . $modelId;
+         // $params is passed as reference so we can use the modified data in this function
+         $sql = Car::buildFilterSqlQuery($params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
+         $fuelType, $condition, $minPrice, $maxPrice);
 
-         // Check if 'any' model was chosen
-         if ($modelId != -1) {
-             $sql .= 'ModelId = :modelId';
-             $params[] = 'modelId';
-         }
-         if ($fuelType != 'any') {
-             if (sizeof($params) > 0) {
-                 $sql .= ' AND ';
-             }
+         echo '<br>SQL:' . $sql;
 
-             $sql .= 'FuelType = :fuelType';
-             $params[] = 'fuelType';
-         }
-         if ($condition != 'any') {
-             if (sizeof($params) > 0) {
-                 $sql .= ' AND ';
-             }
-
-             $sql .= 'Condition = :condition';
-             $params[] = 'condition';
+         // Decide which count function to use depending on if $sql is empty
+         if ($sql == '') {
+             $total = Car::count();
+         } else {
+             $total = Car::countFilter($sql, $params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
+             $fuelType, $condition, $minPrice, $maxPrice);
          }
 
-         // Add the select that will always be there
-         if (sizeof($params) > 0) {
-             $sql .= ' AND ';
+         // do that shit here
+         $startRow = $page * $showMax;
+
+         if ($startRow > $total) {
+             $startRow = 0;
+             $page = 0;
          }
 
-         $sql .= '(CURRENT_DATE() - Year) > :minAge AND ';
-         $sql .= 'Mileage BETWEEN 100000 AND 999999 AND ';
-         $sql .= 'Price BETWEEN :minPrice AND :maxPrice ';
-         $sql .= 'LIMIT :startRow, :showMax';
+         // Decide what query to use depending on whether $sql is empty
+         if ($sql == '') {
+             $sql = 'SELECT * FROM vehicle';
+         } else {
+             $sql = 'SELECT * FROM vehicle WHERE ' . $sql;
+         }
 
-         echo 'SQL: ' . $sql;
+         // Add the subset
+         $sql .= ' LIMIT :startRow, :showMax';
 
+         // Loop through all the params and bind it to the query
          $query = $db->prepare($sql);
          foreach ($params as $param) {
              $query->bindParam(':' . $param, ${ $param }, PDO::PARAM_STR); // dont think thisll work lol
          }
 
          // Now add the parameters that will always be there
-         $query->bindParam(':minAge', $minAge, PDO::PARAM_INT);
-         //$query->bindParam(':minMileage', $minMileage, PDO::PARAM_INT);
-         //$query->bindParam(':maxMileage', $maxMileage, PDO::PARAM_INT);
-         $query->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
-         $query->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
          $query->bindParam(':startRow', $startRow, PDO::PARAM_INT);
          $query->bindParam(':showMax', $showMax, PDO::PARAM_INT);
+
          // Next execute this shit show
          $query->execute();
 
@@ -179,18 +167,100 @@ class Car {
                  $car['Sold']);
          }
 
-         // do all the display page shit here
-         $total = sizeof($list);
-
-         $startRow = $page * $showMax;
-
-         if ($startRow > $total) {
-             $startRow = 0;
-             $page = 0;
-         }
-
          return $list;
      }
+
+    public static function buildFilterSqlQuery(&$params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
+     $fuelType, $condition, $minPrice, $maxPrice) {
+        // Initialize sql query string
+        $params = [];
+        $sql = '';
+
+        // Check if 'any' model was chosen
+        if ($manufacturerId != 'any') {
+            if ($modelId == 'any') {
+                // Search just by manufacturer
+                //$sql .= 'ManufacturerId = :manufacturerId';
+                $sql = 'ModelId IN (SELECT model.modelid FROM vehicle, model, manufacturer WHERE ' .
+                        'vehicle.modelid = model.modelid AND model.manufacturerid = manufacturer.manufacturerid ' .
+                        'AND manufacturer.manufacturerid = :manufacturerId)';
+                $params[] = 'manufacturerId';
+            } else {
+                // Search by model
+                $sql .= 'ModelId = :modelId';
+                $params[] = 'modelId';
+            }
+        }
+        if ($fuelType != 'any') {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= 'FuelType = :fuelType';
+            $params[] = 'fuelType';
+        }
+        if ($condition != 'any') {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= '`Condition` = :condition';
+            $params[] = 'condition';
+        }
+        if ($maxAge != 0) {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= '(CURRENT_DATE() - Year) < :maxAge';
+            $params[] = 'maxAge';
+        }
+        if ($maxMileage > 0) {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= 'Mileage BETWEEN :minMileage AND :maxMileage';
+            $params[] = 'minMileage';
+            $params[] = 'maxMileage';
+        } else if ($minMileage > 0) {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= 'Mileage > :minMileage';
+            $params[] = 'minMileage';
+        }
+        if ($maxPrice > 0) {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= 'Price BETWEEN :minPrice AND :maxPrice';
+            $params[] = 'minPrice';
+            $params[] = 'maxPrice';
+        } else if ($minPrice > 0) {
+            if (sizeof($params) > 0) {
+                $sql .= ' AND ';
+            }
+
+            $sql .= 'Price > :minPrice';
+            $params[] = 'minPrice';
+        }
+
+        echo 'SQL: ' . $sql . '<br />';
+        echo 'MaxAge: ' . $maxAge . '<br />';
+        echo 'MinPrice: ' . $minPrice . '<br />';
+        echo 'MaxPrice: ' . $maxPrice . '<br />';
+        echo 'minMileage: ' . $minMileage . '<br />';
+        echo 'maxMileage: ' . $maxMileage . '<br />';
+
+        echo 'Model: ' . $modelId . '<br />';
+        echo 'FuelType: ' . $fuelType . '<br />';
+        echo 'Condition: ' . $condition . '<br />';
+
+        return $sql;
+    }
 
     public static function findByVehicleId($vehicleId) {
         $db = Db::getInstance();
@@ -398,5 +468,21 @@ class Car {
         $query->execute();
 
         return $query->rowCount();
+    }
+
+    public static function countFilter($filterSql, $params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
+    $fuelType, $condition, $minPrice, $maxPrice) {
+        $db = Db::getInstance();
+        $filterSql = 'SELECT * FROM vehicle WHERE ' . $filterSql;
+
+        $query = $db->prepare($filterSql);
+        foreach ($params as $param) {
+            $query->bindParam(':' . $param, ${ $param }, PDO::PARAM_STR);
+        }
+
+        $query->execute();
+
+        return $query->rowCount();
+
     }
 }

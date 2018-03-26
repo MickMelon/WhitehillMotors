@@ -5,7 +5,7 @@
 
         <main>
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
-<!--
+
             <section class="filter-cars">
                 <form id="manufacturer-model" name="manufacturer-model" method="post" action="">
                     Manufacturer:
@@ -28,6 +28,7 @@
                         <?php } ?>
                     </select>
                 </form>
+
                 <form id="filter" name="filter" method="post" action="" enctype="multipart/form-data" id="filterForm">
                     <input type="text" name="manufacturerId" id="manufacturerId" style="display: none;" value="any" />
                     <input type="text" name="modelId" id="modelId" style="display: none;" value="any" />
@@ -53,7 +54,7 @@
                     Price: <input type="number" name="minPrice" /> to <input type="number" name="maxPrice" /><br />
                     <input type="submit" name="submit" value="Filter" form="filter"/>
                 </form>
-            </section>-->
+            </section>
 
             <section class="cars">
 
@@ -114,8 +115,9 @@
         </main>
 
 <script>
+    setManufacturer();
+
     function submitForm(formId) {
-        setManufacturer();
         var form = document.getElementById(formId);
         if (form) {
             form.submit();
@@ -126,13 +128,11 @@
         var model = document.getElementById('model');
         var modelId = model.options[model.selectedIndex].value;
         document.getElementById('modelId').value = modelId;
-
     }
 
     function setManufacturer() {
         var manufacturer = document.getElementById('manufacturer');
         var manufacturerId = manufacturer.options[manufacturer.selectedIndex].value;
         document.getElementById('manufacturerId').value = manufacturerId;
-        alert("TEST");
     }
 </script>
