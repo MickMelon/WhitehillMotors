@@ -31,12 +31,18 @@
         }
 
         public function page() {
+            // Get arrays of manufacturers and models for that manufacturer to display
+            // on the HTML form
             $manufacturers = Car::getAllManufacturers();
-            $models = Car::getAllModelsForManufacturer($manufacturers[0]['ManufacturerID']);
 
+            // If the manufacturer post variable is set then it means that the user has
+            // selected a manufacturer in the HTML form, so get the models for the selected
+            // manufacturer
             if (isset($_POST['manufacturer'])) {
-                echo "wut";
                 $models = Car::getAllModelsForManufacturer($_POST['manufacturer']);
+            } else {
+                // If it isn't set, just get all models from manufacturer 0 (volkswagen)
+                $models = Car::getAllModelsForManufacturer($manufacturers[0]['ManufacturerID']);
             }
 
             // Initialize all variables to be used
@@ -45,35 +51,33 @@
             $startRow = 0;
             $showMax = 5;
 
+            // If a page has been specified, set the page variable to that
             if (isset($_GET['page']) && !empty($_GET['page'])) {
                 $page = $_GET['page'];
             }
 
-            // We need to get all the filter results shit here..
-
+            // Determine if data from the HTML form has been set. If it hasn't, set
+            // the values to the defaults. e.g. 0 or any
             $manufacturerId = isset($_POST['manufacturerId']) && $_POST['manufacturerId'] != '' ? $_POST['manufacturerId'] : 'any';
             $modelId = isset($_POST['modelId']) && $_POST['modelId'] != '' ? $_POST['modelId'] : 'any';
             $maxAge = isset($_POST['maxAge']) && $_POST['maxAge'] != '' ? $_POST['maxAge'] : 0;
-
             $minMileage = isset($_POST['minMileage']) && $_POST['minMileage'] != '' ? $_POST['minMileage'] : 0;
             $maxMileage = isset($_POST['maxMileage']) && $_POST['maxMileage'] != '' ? $_POST['maxMileage'] : 0;
-
             $fuelType = isset($_POST['fuelType']) && $_POST['fuelType'] != '' ? $_POST['fuelType'] : 'any';
             $condition = isset($_POST['condition']) && $_POST['condition'] != '' ? $_POST['condition'] : 'any';
-
             $minPrice = isset($_POST['minPrice']) && $_POST['minPrice'] != '' ? $_POST['minPrice'] : 0;
             $maxPrice = isset($_POST['maxPrice']) && $_POST['maxPrice'] != '' ? $_POST['maxPrice'] : 0;
 
+            // Get the list of cars that match the criteria from the Car model class
+            // These parameter variables are passed by reference so that the
+            // allFilter method modifies the value so we can use them after
             $list = Car::allFilter($page, $total, $startRow, $showMax, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
              $fuelType, $condition, $minPrice, $maxPrice);
-
-            // These parameter variables are passed by reference so that the
-            // allPage method modifies the value so we can use them after
-            //    $list = Car::allPage($page, $total, $startRow, $showMax);
 
             // Build previous/next string to be displayed on the page
             $prevNextString = CarsController::buildPrevNextString($startRow, $showMax, $total);
 
+            // Finally display the cars index page
             require_once('includes/views/cars/index.php');
         }
 

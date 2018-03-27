@@ -99,57 +99,56 @@ class Car {
 
     public static function allFilter(&$page, &$total, &$startRow, $showMax, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
      $fuelType, $condition, $minPrice, $maxPrice) {
+         // Get the database instance from the singleton class
          $db = Db::getInstance();
 
+         // Initialize arrays
          $list = [];
          $params = [];
 
+         // Build the SQL query depending on what values have been set
          // $params is passed as reference so we can use the modified data in this function
          $sql = Car::buildFilterSqlQuery($params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
          $fuelType, $condition, $minPrice, $maxPrice);
 
-         echo '<br>SQL:' . $sql;
-
-         // Decide which count function to use depending on if $sql is empty
+         // Check if there are any WHERE conditions to be used
          if ($sql == '') {
              $total = Car::count();
+
+             // Set the SQL string used later
+             $sql = 'SELECT * FROM vehicle';
          } else {
              $total = Car::countFilter($sql, $params, $manufacturerId, $modelId, $maxAge, $minMileage, $maxMileage,
              $fuelType, $condition, $minPrice, $maxPrice);
+
+             // Set the SQL string used later
+             $sql = 'SELECT * FROM vehicle WHERE ' . $sql;
          }
 
-         // do that shit here
+         // Determine the subset of data we are going to retrieve
          $startRow = $page * $showMax;
-
          if ($startRow > $total) {
              $startRow = 0;
              $page = 0;
          }
 
-         // Decide what query to use depending on whether $sql is empty
-         if ($sql == '') {
-             $sql = 'SELECT * FROM vehicle';
-         } else {
-             $sql = 'SELECT * FROM vehicle WHERE ' . $sql;
-         }
-
-         // Add the subset
+         // Add the subset to the query
          $sql .= ' LIMIT :startRow, :showMax';
 
          // Loop through all the params and bind it to the query
          $query = $db->prepare($sql);
          foreach ($params as $param) {
-             $query->bindParam(':' . $param, ${ $param }, PDO::PARAM_STR); // dont think thisll work lol
+             $query->bindParam(':' . $param, ${ $param }, PDO::PARAM_STR);
          }
 
          // Now add the parameters that will always be there
          $query->bindParam(':startRow', $startRow, PDO::PARAM_INT);
          $query->bindParam(':showMax', $showMax, PDO::PARAM_INT);
 
-         // Next execute this shit show
+         // Finally execute the query
          $query->execute();
 
-         // now return whatever monstrosity result we get.... if any
+         // Store all the results in an array and return the array
          foreach ($query->fetchAll() as $car) {
              $list[] = new Car(
                  $car['VehicleID'],
@@ -176,11 +175,14 @@ class Car {
         $params = [];
         $sql = '';
 
+        // It is going to check every variable and see if a WHERE condition for it
+        // needs to be added to the sql query. It does this if the variable does
+        // not hold the default value (any or 0)
+
         // Check if 'any' model was chosen
         if ($manufacturerId != 'any') {
             if ($modelId == 'any') {
                 // Search just by manufacturer
-                //$sql .= 'ManufacturerId = :manufacturerId';
                 $sql = 'ModelId IN (SELECT model.modelid FROM vehicle, model, manufacturer WHERE ' .
                         'vehicle.modelid = model.modelid AND model.manufacturerid = manufacturer.manufacturerid ' .
                         'AND manufacturer.manufacturerid = :manufacturerId)';
@@ -191,75 +193,68 @@ class Car {
                 $params[] = 'modelId';
             }
         }
+        // Check if 'any' fueltype was chosen
         if ($fuelType != 'any') {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
+            // Add the condition to the sql string and add to param
             $sql .= 'FuelType = :fuelType';
             $params[] = 'fuelType';
         }
+        // Check if 'any' condition was chosen
         if ($condition != 'any') {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= '`Condition` = :condition';
             $params[] = 'condition';
         }
+        // Check if maximum age has been set
         if ($maxAge != 0) {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= '(CURRENT_DATE() - Year) < :maxAge';
             $params[] = 'maxAge';
         }
+        // Check if maximum mileage has been set
         if ($maxMileage > 0) {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= 'Mileage BETWEEN :minMileage AND :maxMileage';
             $params[] = 'minMileage';
             $params[] = 'maxMileage';
+        // If maximum mileage hasn't been set, check if there is a min mileage
         } else if ($minMileage > 0) {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= 'Mileage > :minMileage';
             $params[] = 'minMileage';
         }
+        // Check if maximum price has been set
         if ($maxPrice > 0) {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= 'Price BETWEEN :minPrice AND :maxPrice';
             $params[] = 'minPrice';
             $params[] = 'maxPrice';
+        // If maximum price hasn't been set, check if there is a min price
         } else if ($minPrice > 0) {
-            if (sizeof($params) > 0) {
-                $sql .= ' AND ';
-            }
+            Car::addAndToQuery($sql, $params);
 
             $sql .= 'Price > :minPrice';
             $params[] = 'minPrice';
         }
 
-        echo 'SQL: ' . $sql . '<br />';
-        echo 'MaxAge: ' . $maxAge . '<br />';
-        echo 'MinPrice: ' . $minPrice . '<br />';
-        echo 'MaxPrice: ' . $maxPrice . '<br />';
-        echo 'minMileage: ' . $minMileage . '<br />';
-        echo 'maxMileage: ' . $maxMileage . '<br />';
-
-        echo 'Model: ' . $modelId . '<br />';
-        echo 'FuelType: ' . $fuelType . '<br />';
-        echo 'Condition: ' . $condition . '<br />';
-
+        // Finally return the completed sql string
         return $sql;
+    }
+
+    public static function addAndToQuery(&$sql, &$params) {
+        // Check to see if AND needs to be added to the query. If the params
+        // is not empty then it means there was at least one WHERE beforehand so
+        // AND needs to be added.
+        if (sizeof($params) > 0) {
+            $sql .= ' AND ';
+        }
     }
 
     public static function findByVehicleId($vehicleId) {
