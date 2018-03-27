@@ -2,7 +2,7 @@
 // List of controllers and their actions
 $controllers = array('pages' => ['home', 'error', 'contact', 'about', 'services'],
                      'cars' => ['index', 'single', 'page'],
-                     'reviews' => ['index', 'single', 'add']);
+                     'reviews' => ['index', 'add']);
 
 // Check that the requested controller anda ction are allowed
 if (array_key_exists($controller, $controllers)) {
@@ -10,8 +10,6 @@ if (array_key_exists($controller, $controllers)) {
         call($controller, $action);
     } else {
         call('pages', 'error');
-        echo $controller;
-        echo $action;
     }
 } else {
     call('pages', 'error');
@@ -38,7 +36,7 @@ function call($controller, $action) {
             break;
     }
 
-    // Call the action
+    // Call the action.
     $controller->{ $action }();
 }
 ?>
