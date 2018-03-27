@@ -7,53 +7,97 @@
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
 
             <section class="filter-cars">
-                <form id="manufacturer-model" name="manufacturer-model" method="post" action="">
-                    Manufacturer:
-                    <select id="manufacturer" onchange="submitForm('manufacturer-model')" name="manufacturer" form="manufacturer-model">
-                        <option value="any">Any</option>
-                        <?php foreach ($manufacturers as $manufacturer) { ?>
-                            <option value="<?= $manufacturer['ManufacturerID']; ?>" <?php if (isset($_POST['manufacturer']) && $manufacturer['ManufacturerID'] == $_POST['manufacturer']) echo ' selected'?>>
-                                <?= $manufacturer['Name']; ?>
+                <div class="filter-cars-title">
+                    <h1>Filter Results</h1>
+                    <p>Using the form below makes it easier to narrow down results to find your dream car!</p>
+                </div>
 
-                            </option>
-                        <?php } ?>
+                <div class="filter-cars-forms">
+                    <form id="manufacturer-model" name="manufacturer-model" method="post" action="">
+                        <table>
+                            <tr>
+                                <td>Manufacturer:</td>
+                                <td>
+                                    <select id="manufacturer" onchange="submitForm('manufacturer-model')" name="manufacturer" form="manufacturer-model">
+                                        <option value="any">Any</option>
+                                        <?php foreach ($manufacturers as $manufacturer) { ?>
+                                            <option value="<?= $manufacturer['ManufacturerID']; ?>" <?php if (isset($_POST['manufacturer']) && $manufacturer['ManufacturerID'] == $_POST['manufacturer']) echo ' selected'?>>
+                                                <?= $manufacturer['Name']; ?>
 
-                    </select>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Model:</td>
+                                <td>
+                                    <select onchange="setModel()" name="model" id="model" form="manufacturer-model">
+                                        <option value="any">Any</option>
+                                        <?php foreach ($models as $model) { ?>
+                                            <option value="<?= $model['ModelID']; ?>"><?= $model['Name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
 
-                    Model:
-                    <select onchange="setModel()" name="model" id="model" form="manufacturer-model">
-                        <option value="any">Any</option>
-                        <?php foreach ($models as $model) { ?>
-                            <option value="<?= $model['ModelID']; ?>"><?= $model['Name']; ?></option>
-                        <?php } ?>
-                    </select>
-                </form>
+                    <form id="filter" name="filter" method="post" action="" enctype="multipart/form-data" id="filterForm">
+                        <input type="text" name="manufacturerId" id="manufacturerId" style="display: none;" value="any" />
+                        <input type="text" name="modelId" id="modelId" style="display: none;" value="any" />
+                        <table>
+                            <tr>
+                                <td>Fuel Type:</td>
+                                <td>
+                                    <select name="fuelType">
+                                        <option value="any">Any</option>
+                                        <option value="petrol">Petrol</option>
+                                        <option value="diesel">Diesel</option>
+                                        <option value="electric">Electric</option>
+                                        <option value="hybrid">Hybrid</option>
+                                        <option value="lpg">LPG</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Condition:</td>
+                                <td>
+                                    <select name="condition">
+                                        <option value="any">Any</option>
+                                        <option value="new">New</option>
+                                        <option value="used">Used</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                <td><input type="number" name="age" /></td>
+                            </tr>
+                            <tr>
+                                <td>Mileage From:</td>
+                                <td><input type="number" name="minMileage" /></td>
+                            </tr>
+                            <tr>
+                                <td>Mileage To:</td>
+                                <td><input type="number" name="maxMileage" /></td>
+                            </tr>
+                            <tr>
+                                <td>Price From:</td>
+                                <td><input type="number" name="minPrice" /></td>
+                            </tr>
+                            <tr>
+                                <td>Price To:</td>
+                                <td><input type="number" name="maxPrice" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" name="submit" value="Filter" form="filter"/></td>
+                            </tr>
+                        </table>
 
-                <form id="filter" name="filter" method="post" action="" enctype="multipart/form-data" id="filterForm">
-                    <input type="text" name="manufacturerId" id="manufacturerId" style="display: none;" value="any" />
-                    <input type="text" name="modelId" id="modelId" style="display: none;" value="any" />
-                    Age: <input type="number" name="age" /><br />
-                    Mileage: <input type="number" name="minMileage" /> to <input type="number" name="maxMileage" /><br />
-                    FuelType:
-                    <select name="fuelType">
-                        <option value="any">Any</option>
-                        <option value="petrol">Petrol</option>
-                        <option value="diesel">Diesel</option>
-                        <option value="electric">Electric</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="lpg">LPG</option>
-                    </select>
-                    <br />
-                    Condition:
-                    <select name="condition">
-                        <option value="any">Any</option>
-                        <option value="new">New</option>
-                        <option value="used">Used</option>
-                    </select>
-                    <br />
-                    Price: <input type="number" name="minPrice" /> to <input type="number" name="maxPrice" /><br />
-                    <input type="submit" name="submit" value="Filter" form="filter"/>
-                </form>
+                    </form>
+                </div>
             </section>
 
             <section class="cars">

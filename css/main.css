@@ -471,6 +471,37 @@ section.cars tr:last-child:hover {
     background-color: #2874a6;
 }
 
+section.filter-cars {
+    display: flex;
+    flex-direction: column;
+}
+
+section.filter-cars .filter-cars-title {
+    text-align: center;
+    margin-bottom: 2.5em;
+}
+
+section.filter-cars .filter-cars-forms {
+    width: 90%;
+    font-size: 0.8em;
+}
+
+section.filter-cars .filter-cars-forms form {
+    width: 100%;
+}
+
+section.filter-cars .filter-cars-forms form select {
+    width: 100%;
+}
+
+section.filter-cars .filter-cars-forms table td:nth-child(1) {
+    width: 20%;
+}
+
+section.filter-cars .filter-cars-forms table td:nth-child(2) {
+    width: 80%;
+}
+
 section.error {
     flex-direction: column;
 }
