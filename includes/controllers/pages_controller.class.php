@@ -1,4 +1,8 @@
 <?php
+/*
+    This controller simply displays the basic pages
+*/
+
     class PagesController {
         public function home() {
             require_once('includes/views/pages/home.php');

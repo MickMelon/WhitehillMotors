@@ -1,4 +1,6 @@
 <main>
+    <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
+
     <section class="reviews">
         <div class="reviews-description">
 

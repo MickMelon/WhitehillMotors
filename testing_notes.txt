@@ -1,0 +1,44 @@
+SCENARIO BASED USER TESTING:
+	- Problem List
+	- User Task Evaluation
+
+REQUIREMENTS TRACING:
+	- Navigation Test Log
+	- Component Test Log
+	- Heuristic Testing
+
+TEST PLAN:
+
+Testing will be done through white-box and black-box techniques. The developer will be using the white-box techniques whereas the users will be using block-box techniques. This is because the developer has a full knowledge of the underlying system but the users do not. 
+
+The developer will carry out the requirements tracing which includes navigation, component and heuristic test logs.
+
+A representitive from each user group will be presented with a few tasks relating to their respective user groups. They will carry out these tasks and give feedback through the user task evaluation documents. Once all these user tests are done, all problems will be compiled into the one problems list document.
+
+Things that need to be tested:
+- Reviews
+- Car filters
+- Car pages
+- Car image upload
+- Car multi-image display
+
+TESTING CONDITIONS:
+- Normal traffic
+- Normal, extreme, exceptional
+
+INPUT TESTING:
+- Review add form
+- Review approve
+- Car filter input (so many to do her wat)
+do one for every input mate and it will be alll goooooooooooooooooooood son
+what the fuck is going on :D 
+
+Remember only to do good tests.
+
+NOTED ERRORS:
+
+- Filter results does not work for multiple pages
+- Car image upload will not delete old images in the folder. It will overwrite them. Also, if 5 images are uploaded originally, then modified to only upload 3, then the first 3 will be overwritten but the last 2 will stay there.
+- Cars index page can take some time to load - code needs optimized in the SQL model
+- Car sold writing sometimes displays in wrong place on Linux, but when clicking somewhere it moves back to original position. Maybe due to outdated firefox - doesnt seem to display right on mobile at all (when testing on firefox linux dev tools)
+- fiter form could have been done with get so the user can use URL parameters to easily filter but the way the site is set up doe snot allow this

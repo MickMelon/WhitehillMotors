@@ -8,6 +8,8 @@
         }
 
         public function page2() {
+            // page() is used in place of this method now
+
             // Initialize all variables to be used
             $page = 0;
             $total = 0;
@@ -82,6 +84,9 @@
         }
 
         public function single2() {
+            // Old method that only supported one image
+            // single() is used in place of this
+
             // Check if the id parameter has been set
             if (isset($_GET['id']) && !empty($_GET['id'])) {
                 // Get the car that has that id

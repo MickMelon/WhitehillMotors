@@ -7,8 +7,8 @@
                     <h1>What Is Whitehill Motors?</h1>
                     <p>
                         Beginning as a vulcanizing business in a family garage, Whitehill Motors has grown into a dependable auto repair and quality car sales operation
-                            serving in Forfar, Angus. Owners John, Dwight and Jim specialize in offering new and used cars, vehicle inspections, oil changes, routine maintenance, and
-                            advanced diagnostics.
+                        serving in Forfar, Angus. Owners John, Dwight and Jim specialize in offering new and used cars, vehicle inspections, oil changes, routine maintenance, and
+                        advanced diagnostics.
                     </p>
 
                     <a href="about" class="button button-stretch">Learn More</a>

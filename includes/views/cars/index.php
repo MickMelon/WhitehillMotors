@@ -1,6 +1,6 @@
 <?php
-//echo 'Model ' . $_POST['modelId'];
-//echo 'Manu ' . $_POST['manufacturerId'];
+echo 'Model ' . $_POST['modelId'];
+echo 'Manu ' . $_POST['manufacturerId'];
  ?>
 
         <main>
