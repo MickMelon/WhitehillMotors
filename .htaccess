@@ -5,7 +5,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteRule ^management/?$ management/login.php [L]
 RewriteRule ^cars/?([0-9]+)/?$ index.php?controller=cars&action=single&id=$1 [L]
-RewriteRule ^cars/?$ index.php?controller=cars&action=index [L]
+RewriteRule ^cars/page/?([0-9]+)/?$ index.php?controller=cars&action=page&page=$1 [L]
+RewriteRule ^cars/?$ index.php?controller=cars&action=page [L]
 RewriteRule ^reviews/?([0-9]+)/?$ index.php?controller=reviews&action=single&id=$1 [L]
 RewriteRule ^reviews/add/?$ index.php?controller=reviews&action=add [L]
 RewriteRule ^reviews/?$ index.php?controller=reviews&action=index [L]
