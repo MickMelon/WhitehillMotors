@@ -96,7 +96,7 @@ class Review {
 
     public static function getAllNotApproved() {
         $list = [];
-        
+
         $db = Db::getInstance();
 
         $query = $db->prepare('SELECT * FROM review WHERE Approved = 0');
@@ -116,7 +116,7 @@ class Review {
     }
 
     public static function getAverageRating() {
-        $list = Review::all();
+        $list = Review::getAllApproved();
         $sum = 0;
         $total = sizeof($list);
 
