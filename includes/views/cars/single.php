@@ -53,6 +53,8 @@
                         <tr><td><b>Price:</b></td><td><b>£<?= $car->price; ?></b></td></tr>
                     </table>
                     <p><?= $car->description; ?></p>
+                    <br />
+                    <p><?= $car->features; ?></p>
                 </div>
             </div>
 

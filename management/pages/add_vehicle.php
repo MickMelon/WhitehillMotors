@@ -20,10 +20,11 @@ if (isset($_POST['submit'])) {
 
     require_once('includes/upload.php');
 
-    // Check if there are any errors from upload.php 
-    if (empty($errors)) {
+    // Check if there are any errors from upload.php
+    if (isset($errors) && empty($errors)) {
         Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
         $success[] = 'Vehicle successfully added.';
+        echo "Vehicle successfully added."; // quick fix
     }
 }
 ?>
