@@ -1,8 +1,3 @@
-<?php
-echo 'Model ' . $_POST['modelId'];
-echo 'Manu ' . $_POST['manufacturerId'];
- ?>
-
         <main>
             <section class="small"><h3><i class="fa fa-phone" aria-hidden="true"></i>Call us now on 01307 461234</h3></section>
 
