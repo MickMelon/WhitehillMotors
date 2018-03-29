@@ -20,8 +20,8 @@ if (isset($_POST['submit'])) {
 
     require_once('includes/upload.php');
 
-    // Check if $errors has been set by upload.php
-    if (!isset($errors)) {
+    // Check if there are any errors from upload.php 
+    if (empty($errors)) {
         Car::insert($model, $engine, $year, $registration, $mileage, $fueltype, $condition, $features, $description, $price);
         $success[] = 'Vehicle successfully added.';
     }
