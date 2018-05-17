@@ -22,6 +22,8 @@ Upload all files to your webserver environment. For example, in XAMPP, upload th
 C:\xampp\htdocs\whitehillmotors\
 ```
 
+Import the whitehillmotors.sql database file via phpMyAdmin, for example.
+
 Edit the /includes/connection.php file to match your database connection details.
 
 ```
@@ -34,8 +36,6 @@ $pass = 'password';
 ## Authors
 
 * **Michael McMillan** - [MickMelon](https://github.com/mickmelon)
-
-See also the list of [contributors](https://github.com/mickmelon/whitehillmotors/contributors) who participated in this project.
 
 ## License
 
