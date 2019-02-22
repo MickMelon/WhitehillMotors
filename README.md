@@ -2,6 +2,10 @@
 
 This is a college project where I needed to create a database-driven, responsive website for the fictional company Whitehill Motors. This was achieved using PHP, JavaScript, HTML and CSS (Flexbox). 
 
+## Demo
+
+You can view a live version of this website here: https://mickmelon.com/whitehillmotors
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
